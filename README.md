@@ -22,7 +22,8 @@ Progressive Web Application allowing users to create and save different gift ide
 ## Proposed Architecture
 - Backend in Express, Sequelize, Postgres
 - I want to use GraphQL and Apollo for my query language
-- Frontend in React, JavaScript, with making it a PWA using create-react-app as the base
+- Use the Cloudinary API to save photos
+- Frontend in React, TypeScript, with making it a PWA using create-react-app as the base
 - Material UI since I'm making it a PWA
 ### Stretch goal: 
 - I want to create and integrate a chrome extension to help make it easier to save things to your baskets without having to switch tabs and such.
