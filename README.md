@@ -8,7 +8,7 @@ Progressive Web Application allowing users to create and save different gift ide
 - User always sees or thinks of good gift ideas for their loved ones, but never remember them when it's actually their birthday or a holiday. They use GiftBasket to capture those ideas in the moment to reference later.
 
 ## Wireframes
-
+  [Link to Wireframes](https://docs.google.com/document/d/1uI1vH5dAborPAwI2L5a398Vu8ILIg24JS4x4jlzkrrY/edit?usp=sharing)
 - Landing Page - Create an account / Sign In
 - Home Page - View all the different "baskets" that you've created (A basket is made per person you add to your profile)
 - Create a Basket page - Takes in a name, birthdate, maybe an address and any primary gift ideas
@@ -16,7 +16,8 @@ Progressive Web Application allowing users to create and save different gift ide
 - Edit Basket - Edit details about the person.
 - User Profile page 
 - Edit User Profile page
-###Stretch goal:
+
+### Stretch goal:
 - I'd love to create like, a feed page for sharing gift ideas that everyone can see.
 
 ## Proposed Architecture
