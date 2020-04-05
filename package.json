@@ -18,5 +18,8 @@
   "homepage": "https://github.com/melissay94/giftbasket#readme",
   "devDependencies": {
     "@prisma/cli": "^2.0.0-beta.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.0.0-beta.1"
   }
 }
