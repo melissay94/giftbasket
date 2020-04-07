@@ -1,18 +1,15 @@
 const express = require("express");
 const { gql, ApolloServer } = require("apollo-server-express");
+const typeDefs = require("./schema");
+const Query = require("./resolvers/Query");
+const Mutation = require("./resolvers/Mutation");
 
 const app = express();
 const port = 4000;
 
-const typeDefs = gql`
-  type Query {
-    info: String!
-  }`;
-
 const resolvers = {
-  Query: {
-    info: () => "Try this again",
-  }
+  Query,
+  Mutation
 }
 
 const server = new ApolloServer({
