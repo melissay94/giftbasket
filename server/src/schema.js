@@ -16,6 +16,7 @@ type Basket {
   name: String!
   birthdate: String
   address: String
+  gifts: [Gift!]!
   user: User!
 }
 

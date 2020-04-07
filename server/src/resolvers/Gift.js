@@ -5,3 +5,8 @@ async function users(users) {
 async function baskets(baskets) {
   return baskets.getBaskets();
 }
+
+module.exports = {
+  users,
+  baskets
+}

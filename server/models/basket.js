@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   basket.associate = function(models) {
     models.basket.belongsToMany(models.gift, { through: "giftbaskets" });
     models.basket.hasMany(models.gift);
-    models.belongsTo(models.user);
+    models.basket.belongsTo(models.user);
   };
   return basket;
 };
