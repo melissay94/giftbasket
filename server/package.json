@@ -21,12 +21,14 @@
   "homepage": "https://github.com/melissay94/giftbasket#readme",
   "dependencies": {
     "apollo-server-express": "^2.11.0",
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.0.0",
     "graphql-yoga": "^1.18.3",
     "pg": "^8.0.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.6"
+    "sequelize": "^5.21.6",
+    "sequelize-cli": "^5.5.1"
   }
 }
