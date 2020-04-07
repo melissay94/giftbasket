@@ -11,6 +11,11 @@ type User {
   gifts: [Gift!]!
 }
 
+type AuthPayload {
+  token: String
+  user: User
+}
+
 type Basket {
   id: Int!
   name: String!
@@ -40,9 +45,10 @@ type Query {
 }
 
 type Mutation {
-  createUser(email: String!, password: String!, name: String): User
   createBasket(name: String!, birthdate: String, address: String, userId: Int!): Basket!
   createGift(title: String!, description: String, link: String, image: String, is_public: Boolean!): Gift
+  signup(email: String!, password: String!, name: String): AuthPayload
+  login(email: String!, password: String!): AuthPayload
 }
 `;
 

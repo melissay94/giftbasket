@@ -34,4 +34,5 @@ Progressive Web Application allowing users to create and save different gift ide
 - Auth using Bcrypt for create account and login
 - Able to create baskets and add/remove ideas 
 
-
+## Resources
+[Tutorial for Graphql and Sequelize](https://andela.com/insights/using-graphql-and-sequelize/)

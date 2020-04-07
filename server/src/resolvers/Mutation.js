@@ -1,10 +1,5 @@
-async function createUser(root, { email, password, name }, { models }) {
-  return models.user.create({
-    email,
-    password,
-    name
-  });
-}
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 async function createBasket(root, { name, birthdate, address, userId }, { models }) {
   return models.basket.create({
@@ -25,8 +20,52 @@ async function createGift(root, { title, description, link, image, is_public }, 
   });
 }
 
+async function signup(root, { email, password, name }, { models }) {
+  const [user, created] = await models.user.findOrCreate({
+    where: {
+      email: email
+    },
+    defaults: {
+      email,
+      password,
+      name
+    }
+  });
+
+  if (created) {
+
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+  
+    return {
+      token, 
+      user
+    }
+  } else {
+    return "Error, user already exists";
+  }
+}
+
+async function login(root, { email, password }, { models }) {
+  const user = await models.user.findOne({
+    where: {
+      email: email
+    }
+  });
+
+  if (!user || !user.validPassword(password)) {
+    return "Error, can't log in"
+  } else {
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    return {
+      user,
+      token
+    }
+  }
+}
+
 module.exports = {
-  createUser,
   createBasket,
-  createGift
+  createGift,
+  signup,
+  login
 };
