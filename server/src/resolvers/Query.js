@@ -1,5 +1,9 @@
 async function getUser(root, { id }, { models }) {
-  return models.user.findbyPk(id);
+  return models.user.findOne({
+    where: {
+      id: id
+    }
+  });
 }
 
 async function getAllBasket(root, args, { models }) {
@@ -7,7 +11,11 @@ async function getAllBasket(root, args, { models }) {
 }
 
 async function getBasket(root, { id }, { models }) {
-  return models.basket.findbyPk(id);
+  return models.basket.findOne({
+    where: {
+      id: id
+    }
+  });
 }
 
 async function getAllGifts(root, args, { models }) {
@@ -15,7 +23,11 @@ async function getAllGifts(root, args, { models }) {
 }
 
 async function getGift(root, { id }, { models }) {
-  return models.gift.findbyPk(id);
+  return models.gift.findOne({
+    where: {
+      id: id
+    }
+  });
 }
 
 module.exports = {
