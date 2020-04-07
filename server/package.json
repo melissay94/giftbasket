@@ -1,7 +1,7 @@
 {
-  "name": "giftbasket",
+  "name": "giftbasket-server",
   "version": "1.0.0",
-  "description": "A web app for saving gift ideas for different people",
+  "description": "Backend for final project, utilizing graphql",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,16 +10,16 @@
     "type": "git",
     "url": "git+https://github.com/melissay94/giftbasket.git"
   },
+  "keywords": [
+    "graphql"
+  ],
   "author": "Melissa Young",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/melissay94/giftbasket/issues"
   },
   "homepage": "https://github.com/melissay94/giftbasket#readme",
-  "devDependencies": {
-    "@prisma/cli": "^2.0.0-beta.1"
-  },
   "dependencies": {
-    "@prisma/client": "^2.0.0-beta.1"
+    "graphql-yoga": "^1.18.3"
   }
 }
