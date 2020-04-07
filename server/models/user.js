@@ -45,8 +45,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   user.associate = function(models) {
-    models.user.belongsToMany(models.gift, { through: "usergifts" });
-    models.user.hasMany(models.gift);
+    user.belongsToMany(models.gift, { through: "usergifts" });
+    user.hasMany(models.basket);
   };
 
   user.prototype.validPassword = function(passwordTyped) {

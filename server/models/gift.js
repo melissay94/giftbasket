@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     is_public: DataTypes.BOOLEAN
   }, {});
   gift.associate = function(models) {
-    models.gift.belongsToMany(models.user, { through: "usergifts" });
-    models.gift.belongsToMany(models.basket, { through: "giftbaskets" });
+    gift.belongsToMany(models.user, { through: "usergifts" });
+    gift.belongsToMany(models.basket, { through: "giftbaskets" });
   };
   return gift;
 };

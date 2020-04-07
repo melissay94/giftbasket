@@ -11,12 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       }},
     birthdate: DataTypes.DATE,
     address: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
+    userId: DataTypes.INTEGER
   }, {});
   basket.associate = function(models) {
-    models.basket.belongsToMany(models.gift, { through: "giftbaskets" });
-    models.basket.hasMany(models.gift);
-    models.basket.belongsTo(models.user);
+    basket.belongsToMany(models.gift, { through: "giftbaskets" });
+    basket.belongsTo(models.user, { foreignKey: "userId" });
   };
   return basket;
 };

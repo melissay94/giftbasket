@@ -1,18 +1,13 @@
-
-  // createUser(email: String!, password: String!, name: String): User
-  // createBasket(name: String!, birthdate: String, address: String, userId: Int!): Basket!
-  // createGift(title: String!, description: String, link: String, image: String, is_public: Boolean!): Gift
-
 async function createUser(root, { email, password, name }, { models }) {
-  return models.User.create({
+  return models.user.create({
     email,
     password,
     name
   });
 }
 
-async function createBasket(root, { name, birthdate, address, userId }) {
-  return models.Basket.create({
+async function createBasket(root, { name, birthdate, address, userId }, { models }) {
+  return models.basket.create({
     name,
     birthdate,
     address,
@@ -20,13 +15,13 @@ async function createBasket(root, { name, birthdate, address, userId }) {
   });
 }
 
-async function createGift(root, { title, description, link, image, isPublic }) {
-  return models.Gift.create({
+async function createGift(root, { title, description, link, image, is_public }, { models }) {
+  return models.gift.create({
     title,
     description, 
     link, 
     image,
-    isPublic
+    is_public
   });
 }
 

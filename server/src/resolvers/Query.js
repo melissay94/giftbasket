@@ -1,21 +1,21 @@
 async function getUser(root, { id }, { models }) {
-  return models.User.findbyPk(id);
+  return models.user.findbyPk(id);
 }
 
 async function getAllBasket(root, args, { models }) {
-  return models.Basket.findAll();
+  return models.basket.findAll();
 }
 
 async function getBasket(root, { id }, { models }) {
-  return models.Basket.findbyPk(id);
+  return models.basket.findbyPk(id);
 }
 
 async function getAllGifts(root, args, { models }) {
-  return models.Gift.findAll();
+  return models.gift.findAll();
 }
 
 async function getGift(root, { id }, { models }) {
-  return models.Gift.findbyPk(id);
+  return models.gift.findbyPk(id);
 }
 
 module.exports = {
