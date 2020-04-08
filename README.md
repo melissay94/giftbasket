@@ -36,3 +36,5 @@ Progressive Web Application allowing users to create and save different gift ide
 
 ## Resources
 [Tutorial for Graphql and Sequelize](https://andela.com/insights/using-graphql-and-sequelize/)
+
+[Stock Background Photo - Landing Page](https://www.google.com/url?sa=i&url=https%3A%2F%2Fideas.ted.com%2Fhow-we-turned-our-familys-holiday-gift-exchange-into-a-chance-to-really-connect%2F&psig=AOvVaw0_z4tNV7xP2LU2_-SqWoNu&ust=1586404278178000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDD8c321-gCFQAAAAAdAAAAABAH)
