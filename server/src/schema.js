@@ -31,7 +31,7 @@ type Gift {
   description: String
   link: String
   image: String
-  is_public: Boolean!
+  isPublic: Boolean!
   users: [User!]!
   baskets: [Basket!]!
 }
@@ -46,7 +46,7 @@ type Query {
 
 type Mutation {
   createBasket(name: String!, birthdate: String, address: String, userId: Int!): Basket!
-  createGift(title: String!, description: String, link: String, image: String, is_public: Boolean!): Gift
+  createGift(title: String!, description: String, link: String, image: String, isPublic: Boolean!): Gift
   signup(email: String!, password: String!, name: String): AuthPayload
   login(email: String!, password: String!): AuthPayload
 }

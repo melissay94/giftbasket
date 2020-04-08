@@ -8,11 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      gift_id: {
+      giftId: {
         type: Sequelize.INTEGER
       },
-      basket_id: {
+      basketId: {
         type: Sequelize.INTEGER
+      },
+      isPurchased: {
+        allowNull: false,
+        defaultValue: false,
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

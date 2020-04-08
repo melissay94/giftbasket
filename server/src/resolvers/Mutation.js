@@ -34,7 +34,7 @@ async function signup(root, { email, password, name }, { models }) {
 
   if (created) {
 
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET, { expiresIn: `${60 * 60 * 24}s`});
   
     return {
       token, 
@@ -55,7 +55,7 @@ async function login(root, { email, password }, { models }) {
   if (!user || !user.validPassword(password)) {
     return "Error, can't log in"
   } else {
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET, { expiresIn: `${60 * 60 * 24}s`});
     return {
       user,
       token

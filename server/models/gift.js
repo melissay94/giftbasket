@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }},
     image: DataTypes.STRING,
-    is_public: DataTypes.BOOLEAN
+    isPublic: DataTypes.BOOLEAN
   }, {});
   gift.associate = function(models) {
     gift.belongsToMany(models.user, { through: "usergifts" });

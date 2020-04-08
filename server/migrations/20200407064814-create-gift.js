@@ -21,7 +21,7 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
-      is_public: {
+      isPublic: {
         allowNull: false,
         defaultValue: false,
         type: Sequelize.BOOLEAN
