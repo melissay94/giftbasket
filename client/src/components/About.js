@@ -1,5 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import FunfactCard from "./FunFactCard";
 import createIcon from "../assets/createIcon.png";
 import organizationIcon from "../assets/organizeIcon.png";
@@ -28,11 +30,21 @@ const cardInfo = [{
   description: "Have a special event coming up but not sure where to start? Explore and discover other gift ideas others have shared."
 }];
 
+const useStyles = makeStyles(theme => ({
+  title: {
+    color: theme.palette.secondary.dark,
+    textAlign: "center",
+    fontWeight: "bold"
+  }
+}))
+
 function About() {
+  const classes = useStyles();
+
   return(
-    <Grid container>
+    <Grid container className="section">
       <Grid item xs={12}>
-        <Typography variant="h2" align="center">About</Typography>
+        <Typography variant="h2" className={classes.title}>About</Typography>
       </Grid>
       {cardInfo.map((item, index) => (
         <Grid item lg={3} md={3} xs={6} key={index}>

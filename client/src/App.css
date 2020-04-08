@@ -1,4 +1,9 @@
 
+.logo_container {
+  display: flex;
+  text-decoration: none;
+}
+
 .logo {
   height: 75px;
 }
@@ -14,6 +19,10 @@
   background-image: url("./assets/stockBackgroundPhoto.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.section {
+  margin: 1.5em 0 0.5em 0;
 }
 
 .footer {

@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
-    minHeight: 400,
+    minHeight: 360,
     margin: theme.spacing(2)
   },
   mediaContainer: {

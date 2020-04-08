@@ -31,7 +31,7 @@ const authenitcate = (req, res, next) => {
   });
 }
 
-app.use(authenitcate);
+
 
 const resolvers = {
   Query,
