@@ -15,3 +15,10 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.footer {
+  justify-content: center;
+  text-align: center;
+  padding: 1em;
+  background-color: #ffe69b;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SignUpForm from "../components/SignUpForm";
+import About from "../components/About";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +29,9 @@ function Landing() {
         </Grid>
       </div>
       <div>
-        <Typography variant="h6">About</Typography>
+        <About />
       </div>
-      </div>
+    </div>
   );
 }
 
