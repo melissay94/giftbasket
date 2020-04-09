@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-async function createBasket(root, { name, birthdate, address, userId }, { currentUser, models }) {
+async function createBasket(root, { name, birthdate, address }, { currentUser, models }) {
   return models.basket.create({
     name,
     birthdate,
     address,
-    userId
+    userId: currentUser.userId
   });
 }
 

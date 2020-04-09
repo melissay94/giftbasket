@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Typography, Button } from "@material-ui/core";
@@ -40,7 +40,13 @@ function Home(props) {
   return(
     <div>
       <Typography variant="h2">Your Baskets</Typography>
-      <Button color="secondary" variant="contained" className={classes.button}>Create New Basket</Button>
+      <Button 
+        color="secondary" 
+        variant="contained"
+        component={Link}
+        to="/basket/new"
+        className={classes.button}
+      >Create New Basket</Button>
       {baskets.map((item, index) => (
         <BasketCard key={index} basket={item} />
       ))}

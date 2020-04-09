@@ -13,8 +13,8 @@ function Content(props) {
     <Switch>
       <Route path="/" exact={true} render={() => <Landing isLoggedIn={props.isLoggedIn} />} />
       <Route path="/home" render={() => <Home isLoggedIn={props.isLoggedIn} />} />
-      <Route path="/baskets" exact={true} render={() => <Baskets isLoggedIn={props.isLoggedIn} />} />
-      <Route path="/baskets/new" render={() => <CreateBasket isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/basket/new" exact={true} render={() => <CreateBasket isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/basket/:id" render={() => <Baskets isLoggedIn={props.isLoggedIn} />} />
       <Route path="/feed" render={() => <Feed isLoggedIn={props.isLoggedIn} />} />
       <Route path="*" component={NotFound} />
     </Switch>
