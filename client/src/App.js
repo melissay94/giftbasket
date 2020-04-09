@@ -33,8 +33,6 @@ const GET_ISLOGGEDIN = gql`{
 function App() {
   const { loading, error, data } = useQuery(GET_ISLOGGEDIN);
 
-  console.log(data);
-
   const navigation = data.isLoggedIn ? <PostAuthNav /> : <PreAuthNav />
 
   return (
@@ -42,7 +40,7 @@ function App() {
       <div className="App">
         <ThemeProvider theme={theme}>
           {navigation}
-          <Content />
+          <Content isLoggedIn={data.isLoggedIn} />
           <Footer />
         </ThemeProvider>
       </div>

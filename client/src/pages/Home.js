@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import BasketCard from "../components/BasketCard";
@@ -9,10 +10,15 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function Home() {
+function Home(props) {
+  
+  const classes = useStyles();
+  
+  if (!props.isLoggedIn) {
+    return <Redirect to="/" />
+  }
 
   const baskets = [];
-  const classes = useStyles();
 
   return(
     <div>

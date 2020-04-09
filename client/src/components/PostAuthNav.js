@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useApolloClient } from "@apollo/react-hooks";
@@ -26,6 +27,7 @@ function PostAuthNav() {
     client.clearStore();
     client.writeData({ data: { isLoggedIn: false } });
     localStorage.removeItem("token");
+    return <Redirect to="/" />
   }
 
   return(

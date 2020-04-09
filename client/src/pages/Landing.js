@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SignUpForm from "../components/SignUpForm";
@@ -14,9 +15,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function Landing() {
+function Landing(props) {
 
   const classes = useStyles();
+  
+  if (props.isLoggedIn) {
+    return <Redirect to="/home" />
+  }
 
   return(
     <div>

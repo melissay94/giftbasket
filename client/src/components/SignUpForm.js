@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useApolloClient, useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Paper, TextField, Typography, Button, Grid } from "@material-ui/core/";
@@ -37,6 +38,7 @@ function SignupFrom() {
     onCompleted({ signup }) {
       localStorage.setItem("token", signup.token);
       client.writeData({ data: { isLoggedIn: true } });
+      return <Redirect to ="/home" />
     }
   });
 

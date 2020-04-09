@@ -8,14 +8,14 @@ import Landing from "../pages/Landing";
 import NotFound from "../pages/NotFound";
 
 
-function Content() {
+function Content(props) {
   return(
     <Switch>
-      <Route path="/" exact={true} render={() => <Landing />} />
-      <Route path="/home" render={() => <Home />} />
-      <Route path="/baskets" exact={true} render={() => <Baskets />} />
-      <Route path="/baskets/new" render={() => <CreateBasket />} />
-      <Route path="/feed" render={() => <Feed />} />
+      <Route path="/" exact={true} render={() => <Landing isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/home" render={() => <Home isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/baskets" exact={true} render={() => <Baskets isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/baskets/new" render={() => <CreateBasket isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/feed" render={() => <Feed isLoggedIn={props.isLoggedIn} />} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
