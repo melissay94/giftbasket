@@ -22,4 +22,6 @@ export const client = new ApolloClient({
   link: authLink.concat(link)
 });
 
-client.writeData({ data: { isLoggedIn: false } });
+const isLoggedIn = localStorage.getItem("token") != null ? true : false;
+
+client.writeData({ data: { isLoggedIn: isLoggedIn } });
