@@ -46,6 +46,7 @@ async function signup(root, { email, password, name }, { currentUser, models }) 
 }
 
 async function login(root, { email, password }, { currentUser, models }) {
+  
   const user = await models.user.findOne({
     where: {
       email: email
@@ -53,7 +54,7 @@ async function login(root, { email, password }, { currentUser, models }) {
   });
 
   if (!user || !user.validPassword(password)) {
-    return "Error, can't log in"
+    throw new Error("Could not find user");
   } else {
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET, { expiresIn: `${60 * 60 * 24}s`});
     return {

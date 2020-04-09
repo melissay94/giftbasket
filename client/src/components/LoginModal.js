@@ -40,6 +40,7 @@ function LoginModal(props) {
   const [login, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
       localStorage.setItem("token", login.token);
+      console.log(login);
       client.writeData({ data: { isLoggedIn: true } });
     }
   });
@@ -72,6 +73,8 @@ function LoginModal(props) {
               fullWidth 
               color="secondary"
               margin="normal"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
             />
             <TextField 
               variant="outlined" 
@@ -80,6 +83,8 @@ function LoginModal(props) {
               fullWidth 
               color="secondary"
               margin="normal"
+              onChange={e => setPassword(e.target.value)}
+              value={password}
             />
             <Grid container>
               <Grid item xs={9}></Grid>
