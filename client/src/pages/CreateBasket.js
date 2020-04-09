@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
-import GiftCard from "../components/GiftCard";
+import GiftList from "../components/GiftList";
 import NewGiftModal from "../components/NewGiftModal";
 import useModal from "../hooks/useModal";
 
@@ -90,11 +90,9 @@ function CreateBaskets(props) {
                 Add Gift
               </Fab>
           </div>
-          {
-            gifts.map((item, index) => (
-              <GiftCard key={index} gift={item} />
-            ))
-          }
+          <div className="basket-text-field">
+            <GiftList gifts={gifts} />
+          </div>
         <div className="basket-text-field">
         <Button 
           className={classes.submit}

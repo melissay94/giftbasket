@@ -19,12 +19,22 @@ function GiftList(props) {
 
   const { data, loading, error } = useQuery(GET_GIFTS);
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error!</div>
+  let gifts = [];
+
+  if (props.gifts) {
+    gifts = props.gifts;
+  } else {
+  
+    if (loading) return <div>Loading...</div>
+    if (error) return <div>Error!</div>
+
+    gifts = data.getCurrentUser.gifts;
+    
+  }
 
   return (
     <Grid container>{
-      data.getCurrentUser.gifts.length > 0 ? props.gifts.map((item, index) => (
+      gifts.length > 0 ? props.gifts.map((item, index) => (
         <Grid item xs={6} md={4} lg={3} key={index}>
           <GiftCard gift={item} />
         </Grid>
