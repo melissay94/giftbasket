@@ -1,8 +1,16 @@
-const React = require("react");
+import React from "react";
+import BasketHeader from "../components/BasketHeader";
+import GiftCard from "../components/GiftCard";
 
-function Baskets() {
+
+function Baskets(props) {
   return(
-    <div>Baskets</div>
+    <div>
+      <BasketHeader />
+      {props.gifts.map((item, index) => (
+        <GiftCard key={index} gift={item} />
+      ))}
+    </div>
   );
 }
 

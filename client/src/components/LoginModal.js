@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }, 
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid " + theme.palette.secondary.dark,
+    borderRadius: "10px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3)
   }
@@ -20,15 +20,14 @@ const useStyles = makeStyles(theme => ({
 function LoginModal(props) {
 
   const classes = useStyles();
-  console.log(props.open);
 
-  return props.open ? ReactDOM.createPortal(
+  return (
     <Modal
       aria-labelledby="login modal"
       aria-describedby="A form to login into Giftbasket with an existing account"
       className={classes.modal}
       open={props.open}
-      onClose={props.handleModal(false)}
+      onClose={() => props.handleModal(false)}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{ timeout: 500 }}>
@@ -37,8 +36,8 @@ function LoginModal(props) {
           <h4>Modal!</h4>
         </div>
       </Fade>
-    </Modal>, document.body
-  ) : null;
+    </Modal>
+  );
 }
 
 export default LoginModal;
