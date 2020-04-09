@@ -1,7 +1,7 @@
-async function getUser(root, { id }, { models }) {
+async function getCurrentUser(root, args, { currentUser, models }) {
   return models.user.findOne({
     where: {
-      id: id
+      id: currentUser.userId
     }
   });
 }
@@ -31,7 +31,7 @@ async function getGift(root, { id }, { models }) {
 }
 
 module.exports = {
-  getUser,
+  getCurrentUser,
   getAllBasket,
   getBasket,
   getAllGifts,

@@ -32,13 +32,14 @@ function SignupFrom() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [signedUp, setSignedUp] = useState(false);
 
   const client = useApolloClient();
   const [signup, { loading, error }] = useMutation(SIGNUP_USER, {
     onCompleted({ signup }) {
       localStorage.setItem("token", signup.token);
       client.writeData({ data: { isLoggedIn: true } });
-      return <Redirect to ="/home" />
+      setSignedUp(true);
     }
   });
 
@@ -54,6 +55,7 @@ function SignupFrom() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>
+  if (signedUp) return <Redirect to="/home" />
 
   return(
     <Paper className={classes.root}>

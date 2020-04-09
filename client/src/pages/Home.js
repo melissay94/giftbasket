@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import BasketCard from "../components/BasketCard";
@@ -8,17 +10,32 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(5)
   }
-}))
+}));
+
+const GET_BASKETS = gql`
+  query {
+    getCurrentUser {
+      baskets {
+        name,
+        birthdate,
+        address
+      }
+    }
+  }`;
 
 function Home(props) {
   
   const classes = useStyles();
+  const { data, loading, error } = useQuery(GET_BASKETS);
   
   if (!props.isLoggedIn) {
     return <Redirect to="/" />
   }
 
-  const baskets = [];
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error!</div>;
+
+  const baskets = data.getCurrentUser.baskets;
 
   return(
     <div>

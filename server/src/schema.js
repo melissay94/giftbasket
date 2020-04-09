@@ -37,7 +37,7 @@ type Gift {
 }
 
 type Query {
-  getUser(id: Int!): User
+  getCurrentUser: User
   getAllBasket: [Basket!]!
   getBasket(id: Int!): Basket
   getAllGifts: [Gift!]!
