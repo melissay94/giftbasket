@@ -7,6 +7,8 @@ import AddIcon from "@material-ui/icons/Add";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import GiftCard from "../components/GiftCard";
+import NewGiftModal from "../components/NewGiftModal";
+import useModal from "../hooks/useModal";
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -27,6 +29,7 @@ function CreateBaskets(props) {
   const [address, setAddress] = useState("");
   const [gifts, setGifts] = useState([]);
   const classes = useStyles();
+  const {isShowing, toggleModal} = useModal();
 
   if (!props.isLoggedIn) return <Redirect to="/" />
 
@@ -73,7 +76,8 @@ function CreateBaskets(props) {
               className={classes.addGift}
               variant="extended" 
               type="button"
-              color="secondary">
+              color="secondary"
+              onClick={() => toggleModal(true)}>
                 <AddIcon />
                 Add Gift
               </Fab>
@@ -94,6 +98,7 @@ function CreateBaskets(props) {
         </div>
         </Grid>
       </form>
+      <NewGiftModal toggleModal={toggleModal} isShowing={isShowing} />
     </div>
   );
 }
