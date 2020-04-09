@@ -31,6 +31,14 @@ function CreateBaskets(props) {
   const classes = useStyles();
   const {isShowing, toggleModal} = useModal();
 
+  const addGift = newGift => {
+    console.log(newGift);
+    setGifts([
+      ...gifts,
+      newGift
+    ]);
+  }
+
   if (!props.isLoggedIn) return <Redirect to="/" />
 
   return (
@@ -98,7 +106,7 @@ function CreateBaskets(props) {
         </div>
         </Grid>
       </form>
-      <NewGiftModal toggleModal={toggleModal} isShowing={isShowing} />
+      <NewGiftModal toggleModal={toggleModal} isShowing={isShowing} addGift={addGift} />
     </div>
   );
 }

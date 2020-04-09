@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Backdrop, Fade, TextField, Grid, Button, Typography, Tabs, Tab } from "@material-ui/core";
+import { Modal, Backdrop, Fade, Typography, Tabs, Tab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import NewGiftPanel from "./NewGiftPanel";
+import ExistingGiftsPanel from "./ExistingGiftPanel";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -18,30 +20,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   }
 }));
-
-function NewGiftPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      aria-labelledby={"New gift form tab panel"}
-      { ...other}>New Gift</div>
-  );
-}
-
-function ExistingGiftsPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      aria-labelledby={"Existing Gifts list tab panel"}
-      { ...other}>Existing Gifts</div>
-  );
-}
 
 function NewGiftModal(props) {
 
@@ -76,7 +54,7 @@ function NewGiftModal(props) {
               label="Your Gifts"
               id="existing-gift-tab"/>
           </Tabs>
-          <NewGiftPanel value={currentTab} index={0}></NewGiftPanel>
+          <NewGiftPanel value={currentTab} index={0} addGift={props.addGift} toggleModal={props.toggleModal}></NewGiftPanel>
           <ExistingGiftsPanel value={currentTab} index={1}></ExistingGiftsPanel>
           </div>
       </Fade>
