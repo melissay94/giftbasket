@@ -32,7 +32,7 @@ const cardInfo = [{
 
 const useStyles = makeStyles(theme => ({
   title: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.secondary.main,
     textAlign: "center",
     fontWeight: "bold"
   }

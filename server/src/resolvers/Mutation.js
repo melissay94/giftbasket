@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-async function createBasket(root, { name, birthdate, address, userId }, { models }) {
+async function createBasket(root, { name, birthdate, address, userId }, { currentUser, models }) {
   return models.basket.create({
     name,
     birthdate,
@@ -10,7 +10,7 @@ async function createBasket(root, { name, birthdate, address, userId }, { models
   });
 }
 
-async function createGift(root, { title, description, link, image, is_public }, { models }) {
+async function createGift(root, { title, description, link, image, is_public }, { currentUser, models }) {
   return models.gift.create({
     title,
     description, 
@@ -20,7 +20,7 @@ async function createGift(root, { title, description, link, image, is_public }, 
   });
 }
 
-async function signup(root, { email, password, name }, { models }) {
+async function signup(root, { email, password, name }, { currentUser, models }) {
   const [user, created] = await models.user.findOrCreate({
     where: {
       email: email
@@ -45,7 +45,7 @@ async function signup(root, { email, password, name }, { models }) {
   }
 }
 
-async function login(root, { email, password }, { models }) {
+async function login(root, { email, password }, { currentUser, models }) {
   const user = await models.user.findOne({
     where: {
       email: email

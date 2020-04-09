@@ -1,6 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useApolloClient } from "@apollo/react-hooks";
 import Logo from "./Logo";
 
 const useStyles = makeStyles (theme => ({
@@ -17,7 +18,15 @@ const useStyles = makeStyles (theme => ({
 
 function PostAuthNav() {
 
+  const client = useApolloClient();
+
   const classes = useStyles();
+
+  const logout = () => {
+    client.clearStore();
+    client.writeData({ data: { isLoggedIn: false } });
+    localStorage.removeItem("token");
+  }
 
   return(
     <AppBar position="static" className={classes.root}>
@@ -28,7 +37,7 @@ function PostAuthNav() {
         <Button className={classes.button}>My Baskets</Button>
         <Button className={classes.button}>My Gifts</Button>
         <Button className={classes.button}>Discover</Button>
-        <Button className={classes.button}>Logout</Button>
+        <Button className={classes.button} onClick={() => logout()}>Logout</Button>
       </Toolbar>
     </AppBar>
   );

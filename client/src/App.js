@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import PreAuthNav from "./components/PreAuthNav";
 import PostAuthNav from "./components/PostAuthNav";
@@ -24,15 +26,22 @@ const theme = createMuiTheme({
   }
 });
 
-function App() {
+const GET_ISLOGGEDIN = gql`{
+  isLoggedIn @client
+}`;
 
-  const setNav = () => true ? <PreAuthNav /> : <PostAuthNav />;
+function App() {
+  const { loading, error, data } = useQuery(GET_ISLOGGEDIN);
+
+  console.log(data);
+
+  const navigation = data.isLoggedIn ? <PostAuthNav /> : <PreAuthNav />
 
   return (
     <Router>
       <div className="App">
         <ThemeProvider theme={theme}>
-          {setNav()}
+          {navigation}
           <Content />
           <Footer />
         </ThemeProvider>
