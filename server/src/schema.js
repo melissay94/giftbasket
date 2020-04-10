@@ -47,11 +47,9 @@ type Gift {
 }
 
 type Query {
-  getCurrentUser: User
-  getAllBasket: [Basket!]!
-  getBasket(id: Int!): Basket
-  getAllGifts: [Gift!]!
-  getGift(id: Int!): Gift
+  currentUser: User
+  basket(id: Int!): Basket
+  gifts: [Gift!]!
 }
 
 type Mutation {

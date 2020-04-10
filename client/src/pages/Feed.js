@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { Typography, Button } from "@material-ui/core";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import GiftList from "../components/GiftList";
@@ -7,7 +8,7 @@ import GiftList from "../components/GiftList";
 // Query here for all gifts in the app
 const GET_FEED = gql`
   query {
-    getAllGifts {
+    gifts {
       id,
       title
     }
@@ -25,7 +26,7 @@ function Feed(props) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
 
-  const gifts = data.getAllGifts;
+  const gifts = data.gifts;
 
   return(
     <div>

@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 const GET_BASKETS = gql`
   query {
-    getCurrentUser {
+    currentUser {
       baskets {
         name,
         birthdate,
@@ -42,7 +42,7 @@ function Home(props) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
 
-  const baskets = data.getCurrentUser.baskets;
+  const baskets = data.currentUser.baskets;
 
   return(
     <div>
