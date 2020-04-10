@@ -8,5 +8,5 @@ async function gifts(gifts) {
 
 module.exports = {
   user,
-  gifts
+  gifts,
 }

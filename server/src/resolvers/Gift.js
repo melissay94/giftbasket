@@ -8,5 +8,5 @@ async function baskets(baskets) {
 
 module.exports = {
   users,
-  baskets
+  baskets,
 }

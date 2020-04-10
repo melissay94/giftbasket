@@ -54,7 +54,13 @@ type Query {
 
 type Mutation {
   createBasket(name: String!, birthdate: String, address: String, userId: Int!, gifts: [CreateGiftInput]): Basket!
+  editBasket(id: Int!, name: String, birthdate: String, address: String): Basket!
+  deleteBasket(id: Int!): Boolean!
   createGift(title: String!, description: String, link: String, image: String, isPublic: Boolean!): Gift
+  editGift(id: Int!, title: String, description: String, link: String, image: String, isPublic: Boolean): Gift
+  addGiftToUser(id: Int!): User!
+  addGiftToBasket(basketId: Int!, giftId: Int!): Basket!
+  deleteGift(id: Int!): Boolean!
   signup(email: String!, password: String!, name: String): AuthPayload
   login(email: String!, password: String!): AuthPayload
 }
