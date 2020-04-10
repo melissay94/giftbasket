@@ -40,7 +40,9 @@ function App() {
       <div className="App">
         <ThemeProvider theme={theme}>
           {navigation}
-          <Content isLoggedIn={data.isLoggedIn} />
+          <main>
+            <Content isLoggedIn={data.isLoggedIn} />
+          </main>
           <Footer />
         </ThemeProvider>
       </div>

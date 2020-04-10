@@ -7,8 +7,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import BasketCard from "../components/BasketCard";
 
 const useStyles = makeStyles(theme => ({
-  button: {
+  title: {
     margin: theme.spacing(5)
+  },
+  button: {
+    margin: `0 auto`,
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
+    display: "block",
+    width: "65%",
   }
 }));
 
@@ -39,7 +46,10 @@ function Home(props) {
 
   return(
     <div>
-      <Typography variant="h2">Your Baskets</Typography>
+      <Typography 
+        variant="h2" 
+        align="center"
+        className={classes.title}>Your Baskets</Typography>
       <Button 
         color="secondary" 
         variant="contained"

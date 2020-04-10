@@ -4,6 +4,10 @@ import BasketHeader from "../components/BasketHeader";
 import GiftCard from "../components/GiftCard";
 
 function Baskets(props) {
+
+  // Call to get specific basket
+
+  const basket = null;
   
   if (!props.isLoggedIn) {
     return <Redirect to="/" />
@@ -11,7 +15,7 @@ function Baskets(props) {
 
   return(
     <div>
-      <BasketHeader />
+      <BasketHeader basketId={ basket ? basket : null } />
       {props.gifts.map((item, index) => (
         <GiftCard key={index} gift={item} />
       ))}

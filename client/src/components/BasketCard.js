@@ -25,7 +25,12 @@ function BasketCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" color="secondary">See More</Button>
+        <Button 
+          size="small" 
+          color="secondary" 
+          href={`basket/${props.basket.id ? props.basket.id : ""}`}>
+            See More
+        </Button>
       </CardActions>
     </Card>
   );

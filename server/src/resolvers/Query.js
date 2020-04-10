@@ -18,8 +18,16 @@ async function getBasket(root, { id }, { models }) {
   });
 }
 
-async function getAllGifts(root, args, { models }) {
-  return models.gift.findAll();
+async function getAllGifts(root, args, { currentUser, models }) {
+  const gifts = await models.gift.findAll();
+
+  if (gifts.length > 0) {
+    gifts = gifts.filter(item => {
+      return item.user.userId !== currentUser.userId && item.isPublic;
+    });
+  }
+
+  return gifts;
 }
 
 async function getGift(root, { id }, { models }) {

@@ -36,9 +36,21 @@ function PostAuthNav() {
         <div className={classes.title}>
           <Logo link="/home" />
         </div>
-        <Button className={classes.button}>My Baskets</Button>
-        <Button className={classes.button}>My Gifts</Button>
-        <Button className={classes.button}>Discover</Button>
+        <Button 
+          href="/home"
+          className={classes.button}>
+            My Baskets
+        </Button>
+        <Button 
+          href="/gifts"
+          className={classes.button}>
+            My Gifts
+        </Button>
+        <Button 
+          href="/feed"
+          className={classes.button}>
+            Discover
+        </Button>
         <Button className={classes.button} onClick={() => logout()}>Logout</Button>
       </Toolbar>
     </AppBar>

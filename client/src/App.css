@@ -1,4 +1,15 @@
 
+main {
+  flex: 150;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 .logo_container {
   display: flex;
   text-decoration: none;

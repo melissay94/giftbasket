@@ -25,6 +25,16 @@ type Basket {
   user: User!
 }
 
+input CreateGiftInput {
+  id: Int!
+  title: String!
+  description: String
+  link: String
+  image: String
+  isPublic: Boolean!
+  basketId: Int!
+}
+
 type Gift {
   id: Int!
   title: String!
@@ -45,7 +55,7 @@ type Query {
 }
 
 type Mutation {
-  createBasket(name: String!, birthdate: String, address: String, userId: Int!): Basket!
+  createBasket(name: String!, birthdate: String, address: String, userId: Int!, gifts: [CreateGiftInput]): Basket!
   createGift(title: String!, description: String, link: String, image: String, isPublic: Boolean!): Gift
   signup(email: String!, password: String!, name: String): AuthPayload
   login(email: String!, password: String!): AuthPayload
