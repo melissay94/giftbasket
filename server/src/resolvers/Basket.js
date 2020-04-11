@@ -1,9 +1,11 @@
-async function user(user) {
-  return user.getUser();
+async function user(basket) {
+  return await basket.getUser();
 }
 
-async function gifts(gifts) {
-  return gifts.getGifts();
+async function gifts(basket) {
+  const gifts = await basket.getGifts();
+  console.log(gifts);
+  return gifts;
 }
 
 module.exports = {

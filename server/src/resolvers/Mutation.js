@@ -46,12 +46,34 @@ async function login(root, { email, password }, { currentUser, models }) {
 }
 
 async function createBasket(root, { name, birthdate, address, gifts }, { currentUser, models }) {
-  return models.basket.create({
+  const basket = await models.basket.create({
     name,
     birthdate,
     address,
     userId: currentUser.userId
   });
+
+  if (basket) {
+    const createdGifts = await Promise.all(
+      gifts.map(giftPayload => {
+        return createGift(root, {
+          title: giftPayload.title,
+          description: giftPayload.description || "",
+          link: giftPayload.link || null,
+          image: giftPayload.image || null,
+          isPublic: giftPayload.isPublic
+        }, {
+          currentUser,
+          models
+        });
+    }));
+
+    await Promise.all(createdGifts.map(gift => {
+      return gift.addBasket(basket.id);
+    }));
+  }
+
+  return basket;
 }
 
 async function editBasket(root, { id, name, birthdate, address }, { currentUser, models }) {
@@ -74,13 +96,16 @@ async function deleteBasket(root, { id }, { currentUser, models }) {
 }
 
 async function createGift(root, { title, description, link, image, isPublic }, { currentUser, models }) {
-  return models.gift.create({
+  
+  const gift = models.gift.create({
     title,
     description, 
     link, 
     image,
-    is_public
+    isPublic
   });
+
+  return gift || "No gift created";
 }
 
 async function editGift(root, { id, title, description, link, image, isPublic}, { currentUser, models }) {

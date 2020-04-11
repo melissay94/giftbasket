@@ -1,6 +1,8 @@
 import "date-fns";
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 import { TextField, Typography, Button, Grid, Fab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
@@ -20,7 +22,15 @@ const useStyles = makeStyles(theme => ({
   addGift: {
     marginTop: "1em"
   }
-}))
+}));
+
+const CREATE_BASKET = gql`
+  mutation createBasket($name: String!, $birthdate: String, $address: String) {
+    createBasket(name: $name, birthdate: $birthdate, address: $address) {
+      name,
+      birthdate 
+    }
+  }`;
 
 function CreateBaskets(props) {
 
@@ -31,8 +41,18 @@ function CreateBaskets(props) {
   const classes = useStyles();
   const {isShowing, toggleModal} = useModal();
 
+  const [createBasket, { data }] = useMutation(CREATE_BASKET);
+
+  const handleSubmitBasket = e => {
+    e.preventDefault();
+    if (name.length < 1) {
+      return;
+    }
+    
+    createBasket({ variables: { name, birthdate: birthdate.toString(), address } });
+  }
+
   const addGift = newGift => {
-    console.log(newGift);
     setGifts([
       ...gifts,
       newGift
@@ -44,7 +64,7 @@ function CreateBaskets(props) {
   return (
     <div>
     <Typography variant="h2" align="center" className={classes.title}> Create a Basket</Typography>
-      <form>
+      <form onSubmit={ e => handleSubmitBasket(e) }>
           <Grid container justify="space-around">
             <TextField
               variant="outlined"
@@ -95,6 +115,7 @@ function CreateBaskets(props) {
           </div>
         <div className="basket-text-field">
         <Button 
+          type="submit"
           className={classes.submit}
           fullWidth
           variant="contained"

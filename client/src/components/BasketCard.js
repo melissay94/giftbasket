@@ -21,7 +21,7 @@ function BasketCard(props) {
           {props.basket.name ? props.basket.name : "Empty Basket"}
         </Typography>
         <Typography variant="body2">
-          {props.basket.birthdate ? props.birthdate.birthdate : "Empty Birthdate"}
+          {props.basket.birthdate ? props.basket.birthdate : "Empty Birthdate"}
         </Typography>
       </CardContent>
       <CardActions>
