@@ -37,10 +37,9 @@ function LoginModal(props) {
   const [password, setPassword] = useState("");
 
   const client = useApolloClient();
-  const [login, { loading, error }] = useMutation(LOGIN_USER, {
+  const [login, { data, loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
       localStorage.setItem("token", login.token);
-      console.log(login);
       client.writeData({ data: { isLoggedIn: true } });
     }
   });
@@ -52,6 +51,8 @@ function LoginModal(props) {
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error!</div>
+
+  if (data) return <Redirect to="/home" />;
 
   return (
     <Modal

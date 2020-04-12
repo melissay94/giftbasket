@@ -71,6 +71,10 @@ async function createBasket(root, { name, birthdate, address, gifts }, { current
     await Promise.all(createdGifts.map(gift => {
       return gift.addBasket(basket.id);
     }));
+
+    await Promise.all(createdGifts.map(gift => {
+      return gift.addUser(currentUser.userId);
+    }))
   }
 
   return basket;
