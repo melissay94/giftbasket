@@ -55,7 +55,10 @@ function NewGiftModal(props) {
               id="existing-gift-tab"/>
           </Tabs>
           <NewGiftPanel value={currentTab} index={0} addGift={props.addGift} toggleModal={props.toggleModal}></NewGiftPanel>
-          <ExistingGiftsPanel value={currentTab} index={1}></ExistingGiftsPanel>
+          <ExistingGiftsPanel 
+            value={currentTab} index={1}
+            toggleExistingGiftIds={props.toggleExistingGiftIds}
+            existingGiftIds={props.existingGiftIds} />
           </div>
       </Fade>
     </Modal>

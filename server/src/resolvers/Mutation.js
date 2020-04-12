@@ -45,7 +45,7 @@ async function login(root, { email, password }, { currentUser, models }) {
   }
 }
 
-async function createBasket(root, { name, birthdate, address, gifts }, { currentUser, models }) {
+async function createBasket(root, { name, birthdate, address, gifts, existingGiftIds }, { currentUser, models }) {
   const basket = await models.basket.create({
     name,
     birthdate,
@@ -53,7 +53,11 @@ async function createBasket(root, { name, birthdate, address, gifts }, { current
     userId: currentUser.userId
   });
 
-  console.log("Gifts:", gifts);
+  const currentUserObj = await models.user.findOne({
+    where: {
+      id: currentUser.userId
+    }
+  });
 
   if (basket) {
     const createdGifts = await Promise.all(
@@ -70,13 +74,16 @@ async function createBasket(root, { name, birthdate, address, gifts }, { current
         });
     }));
 
-    await Promise.all(createdGifts.map(gift => {
-      return gift.addBasket(basket.id);
+    const allGiftsIds = createdGifts.map(gift => {
+      return gift.id;
+    }).concat(existingGiftIds);
+    
+    await Promise.all(allGiftsIds.map(giftId => {
+      return Promise.all([
+        basket.addGift(giftId),
+        currentUserObj.addGift(giftId)
+      ]);
     }));
-
-    await Promise.all(createdGifts.map(gift => {
-      return gift.addUser(currentUser.userId);
-    }))
   }
 
   return basket;

@@ -25,8 +25,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CREATE_BASKET = gql`
-  mutation createBasket($name: String!, $birthdate: String, $address: String, $gifts: [CreateGiftInput!]!) {
-    createBasket(name: $name, birthdate: $birthdate, address: $address, gifts: $gifts) {
+  mutation createBasket($name: String!, $birthdate: String, $address: String, $gifts: [CreateGiftInput!]!, $existingGiftIds: [ID!]!) {
+    createBasket(name: $name, birthdate: $birthdate, address: $address, gifts: $gifts, existingGiftIds: $existingGiftIds) {
       id,
       name,
       birthdate,
@@ -44,6 +44,7 @@ function CreateBaskets(props) {
   const [birthdate, setBirthdate] = useState(new Date());
   const [address, setAddress] = useState("");
   const [gifts, setGifts] = useState([]);
+  const [existingGiftIds, setExistingGiftIds] = useState([]);
   const classes = useStyles();
   const {isShowing, toggleModal} = useModal();
 
@@ -56,7 +57,7 @@ function CreateBaskets(props) {
     }
     
 
-    createBasket({ variables: { name, birthdate: birthdate, address, gifts } });
+    createBasket({ variables: { name, birthdate: birthdate, address, gifts, existingGiftIds } });
   }
 
   const addGift = newGift => {
@@ -66,9 +67,25 @@ function CreateBaskets(props) {
     ]);
   }
 
+  const toggleExistingGiftIds = (event, index) => {
+    if (existingGiftIds.includes(index)) {
+      const indexOf = existingGiftIds.indexOf(index);
+      setExistingGiftIds(
+        existingGiftIds.slice(0, indexOf).concat(
+          existingGiftIds.slice(indexOf+1)
+        )
+      );
+    } else {
+      setExistingGiftIds([
+        ...existingGiftIds,
+        index
+      ]);
+    }
+  }
+
   if (!props.isLoggedIn) return <Redirect to="/" />
 
-  if (data) return <Redirect to={`/basket/${data.basket.id}`} />
+  if (data) return <Redirect to={`/basket/${data.createBasket.id}`} />
 
   return (
     <div>
@@ -134,7 +151,12 @@ function CreateBaskets(props) {
         </div>
         </Grid>
       </form>
-      <NewGiftModal toggleModal={toggleModal} isShowing={isShowing} addGift={addGift} />
+      <NewGiftModal 
+        toggleModal={toggleModal} 
+        isShowing={isShowing} 
+        addGift={addGift}
+        existingGiftIds={existingGiftIds}
+        toggleExistingGiftIds={toggleExistingGiftIds} />
     </div>
   );
 }

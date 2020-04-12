@@ -2,12 +2,13 @@ import React from "react";
 import { Typography} from "@material-ui/core";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import GiftList from "./GiftList";
+import SelectGiftList from "./SelectGiftList";
 
 const GET_GIFTS = gql`
   query {
     currentUser {
       gifts {
+        id,
         title, 
         description,
         link
@@ -29,7 +30,10 @@ function ExistingGiftsPanel(props) {
       <Typography variant="h4">Current Saved Gifts</Typography>
         { error ? <div>Error!</div> : null }
         { loading ? <div>Loading...</div> : null }
-        { data ? <GiftList gifts={data.currentUser.gifts} /> : null }
+        { data ? <SelectGiftList 
+              gifts={data.currentUser.gifts} 
+              toggleExistingGiftIds={props.toggleExistingGiftIds}
+              existingGiftIds={props.existingGiftIds} /> : null }
       </div>
   );
 }
