@@ -74,15 +74,19 @@ async function createBasket(root, { name, birthdate, address, gifts, existingGif
         });
     }));
 
-    const allGiftsIds = createdGifts.map(gift => {
+    const newGiftIds = createdGifts.map(gift => {
       return gift.id;
-    }).concat(existingGiftIds);
-    
-    await Promise.all(allGiftsIds.map(giftId => {
+    });
+
+    await Promise.all(newGiftIds.map(giftId => {
       return Promise.all([
         basket.addGift(giftId),
         currentUserObj.addGift(giftId)
       ]);
+    }));
+
+    await Promise.all(existingGiftIds.map(giftId => {
+      return basket.addGift(giftId);
     }));
   }
 
