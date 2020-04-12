@@ -1,13 +1,13 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import GiftCard from "./GiftCard";
+import React from 'react';
+import { Grid } from '@material-ui/core';
+import GiftCard from './GiftCard';
 
-function GiftList(props) {
-
+function GiftList({ gifts }) {
   return (
-    <Grid container>{
-      props.gifts.length > 0 ? props.gifts.map((item, index) => (
-        <Grid item xs={6} md={4} lg={3} key={index}>
+    <Grid container>
+      {
+      gifts.length > 0 ? gifts.map((item) => (
+        <Grid item xs={6} md={4} lg={3} key={item.id}>
           <GiftCard gift={item} />
         </Grid>
       )) : <div>No Gifts Added Yet.</div>

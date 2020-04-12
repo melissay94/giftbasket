@@ -1,32 +1,33 @@
-import React, { useState } from "react";
-import { TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Grid, Button } from "@material-ui/core";
+import React, { useState } from 'react';
+import {
+  TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Grid, Button,
+} from '@material-ui/core';
 
 function NewGiftForm(props) {
-
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [link, setLink] = useState("");
-  const [isPublic, setIsPublic] = useState("false");
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [link, setLink] = useState('');
+  const [isPublic, setIsPublic] = useState('false');
 
   const handleRadio = (e) => {
-    setIsPublic(e.target.value)
+    setIsPublic(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newGift = {
-      title, 
+      title,
       description,
       link,
-      isPublic: isPublic == "true" ? true : false
-    }
-    
-    props.addGift(newGift);
-    props.toggleModal(false)
-  }
+      isPublic: isPublic == 'true',
+    };
 
-  return(
-    <form onSubmit={e => handleSubmit(e)}>
+    props.addGift(newGift);
+    props.toggleModal(false);
+  };
+
+  return (
+    <form onSubmit={(e) => handleSubmit(e)}>
       <TextField
         variant="outlined"
         label="Title"
@@ -35,7 +36,8 @@ function NewGiftForm(props) {
         margin="normal"
         value={title}
         className="basket-text-field"
-        onChange={e => setTitle(e.target.value)} />
+        onChange={(e) => setTitle(e.target.value)}
+      />
       <TextField
         variant="outlined"
         label="Description"
@@ -44,7 +46,8 @@ function NewGiftForm(props) {
         margin="normal"
         value={description}
         className="basket-text-field"
-        onChange={e => setDescription(e.target.value)} />
+        onChange={(e) => setDescription(e.target.value)}
+      />
       <TextField
         variant="outlined"
         label="Link"
@@ -53,7 +56,8 @@ function NewGiftForm(props) {
         margin="normal"
         value={link}
         className="basket-text-field"
-        onChange={e => setLink(e.target.value)} />
+        onChange={(e) => setLink(e.target.value)}
+      />
       <FormControl component="fieldset">
         <FormLabel component="legend" color="secondary">Share This Gift?</FormLabel>
         <RadioGroup aria-label="Share This Gift" name="shareGift" value={isPublic} onChange={handleRadio}>
@@ -62,13 +66,14 @@ function NewGiftForm(props) {
         </RadioGroup>
       </FormControl>
       <Grid container>
-        <Grid item xs={5} md={6} lg={7}></Grid>
+        <Grid item xs={5} md={6} lg={7} />
         <Grid item xs={7} md={6} lg={5}>
           <Button
             type="submit"
             variant="contained"
             fullWidth
-            color="secondary">
+            color="secondary"
+          >
             Add Gift
           </Button>
         </Grid>

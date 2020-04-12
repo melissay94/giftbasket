@@ -1,29 +1,33 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { List, ListItem, ListItemText, ListItemIcon, Divider } from "@material-ui/core";
-import CheckIcon from "@material-ui/icons/Check";
+import React from 'react';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from '@material-ui/core';
+import CheckIcon from '@material-ui/icons/Check';
 
-function SelectGiftList(props) {
-
-  return(
+function SelectGiftList({ gifts, existingGiftIds, toggleExistingGiftIds }) {
+  return (
     <List>
-      {props.gifts.map((gift, index) => (
+      {gifts.map((gift) => (
         <ListItem
           button
-          selected={props.existingGiftIds.includes(gift.id)}
-          onClick={e => props.toggleExistingGiftIds(e, gift.id)}
-          key={index}
-          >
-            <ListItemIcon>
-              <CheckIcon />
-            </ListItemIcon>
-            <ListItemText 
-              primary={gift.title}
-              secondary={gift.description} />
-          </ListItem>
+          selected={existingGiftIds.includes(gift.id)}
+          onClick={(e) => toggleExistingGiftIds(e, gift.id)}
+          key={gift.id}
+        >
+          <ListItemIcon>
+            <CheckIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={gift.title}
+            secondary={gift.description}
+          />
+        </ListItem>
       ))}
     </List>
-  )
+  );
 }
 
 export default SelectGiftList;

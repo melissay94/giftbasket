@@ -1,11 +1,11 @@
-import React from "react";
-import { Grid, Typography, Link } from "@material-ui/core";
+import React from 'react';
+import { Grid, Typography, Link } from '@material-ui/core';
 
 function Footer() {
-  return(
+  return (
     <Grid container className="footer">
       <Grid item lg={4} md={4} xs={12}>
-        <Typography variant="subtitle2" >
+        <Typography variant="subtitle2">
           Copyright © 2020, Melissa Young
         </Typography>
       </Grid>

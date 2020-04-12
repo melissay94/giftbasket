@@ -1,25 +1,27 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { useApolloClient, useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import { Modal, Backdrop, Fade, TextField, Grid, Button, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useApolloClient, useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import {
+  Modal, Backdrop, Fade, TextField, Grid, Button, Typography,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-  }, 
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    borderRadius: "5px",
+    borderRadius: '5px',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
   },
   title: {
-    textAlign: "center"
-  }
+    textAlign: 'center',
+  },
 }));
 
 const LOGIN_USER = gql`
@@ -30,27 +32,26 @@ const LOGIN_USER = gql`
   }
 `;
 
-function LoginModal(props) {
-
+function LoginModal({ isShowing, toggleModal }) {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const client = useApolloClient();
   const [login, { data, loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
-      localStorage.setItem("token", login.token);
+      localStorage.setItem('token', login.token);
       client.writeData({ data: { isLoggedIn: true } });
-    }
+    },
   });
 
   const handleLogin = (e) => {
     e.preventDefault();
     login({ variables: { email, password } });
-  }
+  };
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error!</div>
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error!</div>;
 
   if (data) return <Redirect to="/home" />;
 
@@ -59,44 +60,47 @@ function LoginModal(props) {
       aria-labelledby="login modal"
       aria-describedby="A form to login into Giftbasket with an existing account"
       className={classes.modal}
-      open={props.open}
-      onClose={() => props.handleModal(false)}
+      open={isShowing}
+      onClose={() => toggleModal(false)}
       closeAfterTransition
       BackdropComponent={Backdrop}
-      BackdropProps={{ timeout: 500 }}>
-      <Fade in={props.open}>
+      BackdropProps={{ timeout: 500 }}
+    >
+      <Fade in={isShowing}>
         <div className={`${classes.paper} no-outline`}>
           <Typography variant="h6" className={classes.title}>Welcome Back!</Typography>
-          <form onSubmit={ (e) => handleLogin(e) }>
-            <TextField 
-              variant="outlined" 
-              label="Email" 
-              fullWidth 
+          <form onSubmit={(e) => handleLogin(e)}>
+            <TextField
+              variant="outlined"
+              label="Email"
+              fullWidth
               color="secondary"
               margin="normal"
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
-            <TextField 
-              variant="outlined" 
-              label="Password" 
-              type="password" 
-              fullWidth 
+            <TextField
+              variant="outlined"
+              label="Password"
+              type="password"
+              fullWidth
               color="secondary"
               margin="normal"
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
             <Grid container>
-              <Grid item xs={9}></Grid>
+              <Grid item xs={9} />
               <Grid item xs={3}>
-                <Button 
+                <Button
                   type="submit"
-                  variant="contained" 
+                  variant="contained"
                   color="secondary"
                   size="large"
                   fullWidth
-                >Login</Button>
+                >
+                  Login
+                </Button>
               </Grid>
             </Grid>
           </form>

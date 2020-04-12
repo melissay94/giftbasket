@@ -1,7 +1,7 @@
-const React = require("react");
+import React from 'react';
 
 function NewBasketForm() {
-  return(
+  return (
     <div>NewBasketForm</div>
   );
 }
