@@ -19,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
 function BasketCard({ basket }) {
   const classes = useStyles();
 
+  const parseDate = (date) => {
+    const convertDate = new Date(Date.parse(date));
+    const dateTimeArray = convertDate.toString().split(' ');
+    const dateString = `${dateTimeArray[1]} ${dateTimeArray[2]}, ${dateTimeArray[3]}`;
+    return dateString;
+  };
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -26,7 +33,7 @@ function BasketCard({ basket }) {
           {basket.name ? basket.name : 'Empty Basket'}
         </Typography>
         <Typography variant="body2">
-          {basket.birthdate ? Date.parse(basket.birthdate) : 'Empty Birthdate'}
+          {basket.birthdate ? parseDate(basket.birthdate) : 'Empty Birthdate'}
         </Typography>
       </CardContent>
       <CardActions>

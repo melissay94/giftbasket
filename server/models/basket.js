@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
           message: "Invalid length. Name must be between 1 and 99 characters."
         }
       }},
-    birthdate: DataTypes.DATE,
+    birthdate: DataTypes.STRING,
     address: DataTypes.STRING,
     userId: DataTypes.INTEGER
   }, {});

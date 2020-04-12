@@ -48,8 +48,6 @@ function Home({ isLoggedIn }) {
     return <div>Error!</div>;
   }
 
-  console.log(data);
-
   const { baskets } = data.currentUser;
 
   return (

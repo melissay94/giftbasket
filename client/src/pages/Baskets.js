@@ -10,6 +10,7 @@ const GET_BASKET = gql`
   query basket($id: Int!) {
     basket(id: $id) {
       name,
+      birthdate,
       gifts {
         id,
         title,
