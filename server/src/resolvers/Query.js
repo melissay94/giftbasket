@@ -1,17 +1,29 @@
 async function currentUser(root, args, { currentUser, models }) {
-  return models.user.findOne({
+  const user =  await models.user.findOne({
     where: {
       id: currentUser.userId
     }
   });
+
+  if (user) {
+    return user;
+  } else {
+    throw new Error("User not found");
+  }
 }
 
 async function basket(root, { id }, { models }) {
-  return await models.basket.findOne({
+  const basket = await models.basket.findOne({
     where: {
       id: id
     }
   });
+
+  if (basket) {
+    return basket
+  } else {
+    throw new Error("Basket not found");
+  }
 }
 
 async function gifts(root, args, { currentUser, models }) {
@@ -21,9 +33,15 @@ async function gifts(root, args, { currentUser, models }) {
     gifts = gifts.filter(item => {
       return item.user.userId !== currentUser.userId && item.isPublic;
     });
+  } else {
+    return [];
   }
 
-  return gifts;
+  if (gifts) {
+    return gifts;
+  } else {
+    throw new Error("Gifts not found");
+  }
 }
 
 module.exports = {

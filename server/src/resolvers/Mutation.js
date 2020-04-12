@@ -22,7 +22,7 @@ async function signup(root, { email, password, name }, { currentUser, models }) 
       user
     }
   } else {
-    return "Error, user already exists";
+    throw new Error("Error, user already exists");
   }
 }
 
@@ -88,9 +88,11 @@ async function createBasket(root, { name, birthdate, address, gifts, existingGif
     await Promise.all(existingGiftIds.map(giftId => {
       return basket.addGift(giftId);
     }));
+
+    return basket;
   }
 
-  return basket;
+  throw new Error("Could not create basket");
 }
 
 async function editBasket(root, { id, name, birthdate, address }, { currentUser, models }) {
@@ -114,7 +116,7 @@ async function deleteBasket(root, { id }, { currentUser, models }) {
 
 async function createGift(root, { title, description, link, image, isPublic }, { currentUser, models }) {
   
-  const gift = models.gift.create({
+  const gift = await models.gift.create({
     title,
     description, 
     link, 
@@ -122,7 +124,11 @@ async function createGift(root, { title, description, link, image, isPublic }, {
     isPublic
   });
 
-  return gift || "No gift created";
+  if (gift) {
+    return gift;
+  } else {
+    throw new Error("Gift could not be created");
+  }
 }
 
 async function editGift(root, { id, title, description, link, image, isPublic}, { currentUser, models }) {

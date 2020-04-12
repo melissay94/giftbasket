@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -33,6 +33,7 @@ const GET_BASKETS = gql`
 
 function Home({ isLoggedIn }) {
   const classes = useStyles();
+  const client = useApolloClient();
   const { data, loading, error } = useQuery(GET_BASKETS);
 
   if (!isLoggedIn) {
@@ -40,7 +41,14 @@ function Home({ isLoggedIn }) {
   }
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error!</div>;
+  if (error) {
+    client.clearStore();
+    client.writeData({ data: { isLoggedIn: false } });
+    localStorage.removeItem('token');
+    return <div>Error!</div>;
+  }
+
+  console.log(data);
 
   const { baskets } = data.currentUser;
 
