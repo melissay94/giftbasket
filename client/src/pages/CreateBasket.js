@@ -25,11 +25,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CREATE_BASKET = gql`
-  mutation createBasket($name: String!, $birthdate: String, $address: String) {
-    createBasket(name: $name, birthdate: $birthdate, address: $address) {
+  mutation createBasket($name: String!, $birthdate: String, $address: String, $gifts: [CreateGiftInput!]!) {
+    createBasket(name: $name, birthdate: $birthdate, address: $address, gifts: $gifts) {
       id,
       name,
-      birthdate 
+      birthdate,
+      gifts {
+        title,
+        description,
+        isPublic
+      }
     }
   }`;
 
@@ -50,7 +55,8 @@ function CreateBaskets(props) {
       return;
     }
     
-    createBasket({ variables: { name, birthdate: birthdate, address } });
+
+    createBasket({ variables: { name, birthdate: birthdate, address, gifts } });
   }
 
   const addGift = newGift => {
@@ -62,7 +68,7 @@ function CreateBaskets(props) {
 
   if (!props.isLoggedIn) return <Redirect to="/" />
 
-  if (data) return <Redirect to={`/basket/${data.id}`} />
+  if (data) return <Redirect to={`/basket/${data.basket.id}`} />
 
   return (
     <div>

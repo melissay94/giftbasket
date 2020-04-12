@@ -7,7 +7,7 @@ async function currentUser(root, args, { currentUser, models }) {
 }
 
 async function basket(root, { id }, { models }) {
-  return models.basket.findOne({
+  return await models.basket.findOne({
     where: {
       id: id
     }

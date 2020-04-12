@@ -53,6 +53,8 @@ async function createBasket(root, { name, birthdate, address, gifts }, { current
     userId: currentUser.userId
   });
 
+  console.log("Gifts:", gifts);
+
   if (basket) {
     const createdGifts = await Promise.all(
       gifts.map(giftPayload => {

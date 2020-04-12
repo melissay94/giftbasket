@@ -23,6 +23,7 @@ const GET_BASKETS = gql`
   query {
     currentUser {
       baskets {
+        id,
         name,
         birthdate,
         address
@@ -43,6 +44,8 @@ function Home(props) {
   if (error) return <div>Error!</div>;
 
   const baskets = data.currentUser.baskets;
+
+  console.log(baskets);
 
   return(
     <div>
