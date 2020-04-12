@@ -1,33 +1,32 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-import { Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import SignUpForm from "../components/SignUpForm";
-import About from "../components/About";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import SignUpForm from '../components/SignUpForm';
+import About from '../components/About';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    overflow: "hidden"
-  }, 
+    overflow: 'hidden',
+  },
   item: {
-    marginTop: theme.spacing(4)
-  }
-}))
+    marginTop: theme.spacing(4),
+  },
+}));
 
-function Landing(props) {
-
+function Landing({ isLoggedIn }) {
   const classes = useStyles();
-  
-  if (props.isLoggedIn) {
-    return <Redirect to="/home" />
+
+  if (isLoggedIn) {
+    return <Redirect to="/home" />;
   }
 
-  return(
+  return (
     <div>
       <div className={`hero ${classes.root}`}>
         <Grid container>
-          <Grid item lg={6} md={2} xs={1}></Grid>
+          <Grid item lg={6} md={2} xs={1} />
           <Grid item lg={5} md={8} xs={10} className={classes.item}>
             <SignUpForm />
           </Grid>
@@ -41,7 +40,6 @@ function Landing(props) {
 }
 
 export default Landing;
-
 
 
 // Two sections: Hero and About
