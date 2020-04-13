@@ -13,11 +13,11 @@ function Content(props) {
   return (
     <Switch>
       <Route path="/" exact render={() => <Landing isLoggedIn={props.isLoggedIn} />} />
-      <Route path="/home" render={() => <Home isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/home" exact render={() => <Home isLoggedIn={props.isLoggedIn} />} />
       <Route path="/basket/new" exact render={() => <CreateBasket isLoggedIn={props.isLoggedIn} />} />
-      <Route path="/basket/:id" render={() => <Baskets isLoggedIn={props.isLoggedIn} />} />
-      <Route path="/gifts" render={() => <Gifts isLoggedIn={props.isLoggedIn} />} />
-      <Route path="/feed" render={() => <Feed isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/basket/:id" exact render={() => <Baskets isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/gifts" exact render={() => <Gifts isLoggedIn={props.isLoggedIn} />} />
+      <Route path="/feed" exact render={() => <Feed isLoggedIn={props.isLoggedIn} />} />
       <Route path="*" component={NotFound} />
     </Switch>
   );

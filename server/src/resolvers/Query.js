@@ -27,18 +27,20 @@ async function basket(root, { id }, { models }) {
 }
 
 async function gifts(root, args, { currentUser, models }) {
-  const gifts = await models.gift.findAll();
+  const gifts = await models.gift.findAll({
+    include: models.user
+  });
 
-  if (gifts.length > 0) {
-    gifts = gifts.filter(item => {
-      return item.user.userId !== currentUser.userId && item.isPublic;
+  let filteredGifts = [];
+  filteredGifts = gifts.filter(item => {
+    const userIds = item.users.map(user => {
+      return user.id;
     });
-  } else {
-    return [];
-  }
+    return !userIds.includes(currentUser.userId) && item.isPublic;
+  });
 
-  if (gifts) {
-    return gifts;
+  if (filteredGifts) {
+    return filteredGifts;
   } else {
     throw new Error("Gifts not found");
   }
