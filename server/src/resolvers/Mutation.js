@@ -96,12 +96,6 @@ async function createBasket(root, { name, birthdate, address, gifts, existingGif
 }
 
 async function editBasket(root, { id, name, birthdate, address }, { currentUser, models }) {
-  /*
-    1. Attempt to find the basket using the id passed in
-    2. Ensure the returned basket's user id matches currentUser's user id
-    3. Update any fields that have a value and keep fields that are the same
-    4. Return the updated object
-  */
  const basket = await models.basket.findOne({
    where: {
      id
@@ -164,7 +158,14 @@ async function createGift(root, { title, description, link, image, isPublic }, {
     isPublic
   });
 
+  const user = await models.user.findOne({
+    id: currentUser.userId
+  })
+
   if (gift) {
+    if (user) {
+      user.addGift(gift);
+    }
     return gift;
   } else {
     throw new Error("Gift could not be created");
@@ -172,11 +173,30 @@ async function createGift(root, { title, description, link, image, isPublic }, {
 }
 
 async function editGift(root, { id, title, description, link, image, isPublic}, { currentUser, models }) {
-  /*
-    1. Attempt to find gift by id tag
-    2. Update all fields that have values passed in for it
-    3. Return updated gift
-  */
+  const gift = await models.gift.findOne({
+    where: {
+      id
+    }
+  });
+  
+  if (gift && !gift.isPublic) {
+    const updatedGift = await gift.update({
+      title: title || gift.title,
+      description: description || gift.description,
+      link: link || gift.link,
+      image: image || gift.image,
+      isPublic: isPublic || gift.isPublic
+    });
+    
+    if (updatedGift) {
+      return updatedGift;
+    } else {
+      throw new Error(`Cannot update gift ${gift.title}`)
+    }
+
+  } else {
+    throw new Error("Cannot edit gift");
+  }
 }
 
 async function deleteGift(root, { id }, { currentUser, models }) {
@@ -212,6 +232,7 @@ async function deleteGift(root, { id }, { currentUser, models }) {
    return true;
 
  } else {
+  await gift.removeUsers(users);
   await gift.removeBaskets(baskets);
 
   const numDeleted = await models.gift.destroy({
@@ -254,6 +275,7 @@ module.exports = {
   editBasket,
   deleteBasket,
   createGift,
+  editGift,
   deleteGift,
   addGiftToUser,
   addGiftToBasket,

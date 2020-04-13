@@ -11,7 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import GiftList from '../components/GiftList';
-import NewGiftModal from '../components/NewGiftModal';
+import AddGiftModal from '../components/AddGiftModal';
 import useModal from '../hooks/useModal';
 
 const useStyles = makeStyles(() => ({
@@ -146,7 +146,7 @@ function CreateBaskets({ isLoggedIn }) {
             </Fab>
           </div>
           <div className="basket-text-field">
-            <GiftList gifts={gifts} />
+            <GiftList gifts={gifts} isNewBasketFlow={true} />
           </div>
           <div className="basket-text-field">
             <Button
@@ -161,7 +161,7 @@ function CreateBaskets({ isLoggedIn }) {
           </div>
         </Grid>
       </form>
-      <NewGiftModal
+      <AddGiftModal
         toggleModal={toggleModal}
         isShowing={isShowing}
         addGift={addGift}

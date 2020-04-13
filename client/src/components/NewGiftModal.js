@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import {
-  Modal, Backdrop, Fade, Tabs, Tab,
+  Modal, Backdrop, Fade, Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import NewGiftPanel from './NewGiftPanel';
-import ExistingGiftsPanel from './ExistingGiftPanel';
+import NewGiftForm from './NewGiftForm';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -23,24 +24,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NewGiftModal({
+const CREATE_GIFT = gql`
+mutation createGift($title: String!, $description: String, $link: String, $isPublic: Boolean!) {
+  createGift(title: $title, description: $description, link: $link, isPublic: $isPublic) {
+    id
+  }
+}`;
+
+function AddGiftModal({
   isShowing,
   toggleModal,
-  toggleExistingGiftIds,
-  existingGiftIds,
-  addGift,
 }) {
   const classes = useStyles();
-  const [currentTab, setCurrentTab] = useState(0);
+  const [createGift, { data }] = useMutation(CREATE_GIFT, { refetchQueries: ['currentUser'] });
 
-  const handleTabChange = (e, selectedTab) => {
-    setCurrentTab(selectedTab);
-  };
+  const addGift = (newGift) => {
+    createGift({ variables: {
+      title: newGift.title,
+      description: newGift.description,
+      link: newGift.link,
+      isPublic: newGift.isPublic
+    }});
+  }
 
   return (
     <Modal
-      aria-labelledby="add gift modal"
-      aria-describedby="A modal for adding a new gift or select and existing one you've already created"
+      aria-labelledby="create gift modal"
+      aria-describedby="A modal for creating a new gift"
       className={classes.modal}
       open={isShowing}
       onClose={() => toggleModal(false)}
@@ -50,32 +60,12 @@ function NewGiftModal({
     >
       <Fade in={isShowing}>
         <div className={`${classes.paper} no-outline`}>
-          <Tabs
-            indicatorColor="secondary"
-            value={currentTab}
-            onChange={handleTabChange}
-            aria-label="Gift Option Tabs"
-          >
-            <Tab
-              label="New Gift"
-              id="new-gift-tab"
-            />
-            <Tab
-              label="Your Gifts"
-              id="existing-gift-tab"
-            />
-          </Tabs>
-          <NewGiftPanel value={currentTab} index={0} addGift={addGift} toggleModal={toggleModal} />
-          <ExistingGiftsPanel
-            value={currentTab}
-            index={1}
-            toggleExistingGiftIds={toggleExistingGiftIds}
-            existingGiftIds={existingGiftIds}
-          />
+          <Typography variant="h4">New Gift</Typography>
+          <NewGiftForm addGift={addGift} toggleModal={toggleModal} />
         </div>
       </Fade>
     </Modal>
   );
 }
 
-export default NewGiftModal;
+export default AddGiftModal;
