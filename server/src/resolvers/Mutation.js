@@ -112,6 +112,35 @@ async function deleteBasket(root, { id }, { currentUser, models }) {
     4. Remove the basket id from all gifts that have it
     5. Return a boolean for if it was deleted or not
   */
+    const basket = await models.basket.findOne({
+      where: {
+        id
+      }
+    });
+
+    const user = await models.user.findOne({
+      where: {
+        id: currentUser.userId
+      }
+    });
+
+    const gifts = await basket.getGifts();
+
+    if (basket.userId === user.id) {
+      console.log(gifts);
+
+      const result = await basket.removeGifts(gifts);
+
+      console.log(result);
+
+      const numDeleted = await models.basket.destroy({
+        where: {
+          id
+        }
+      });
+
+      return numDeleted > 0;
+    }
 }
 
 async function createGift(root, { title, description, link, image, isPublic }, { currentUser, models }) {

@@ -9,7 +9,9 @@ const GET_FEED = gql`
   query {
     gifts {
       id,
-      title
+      title,
+      description,
+      isPublic
     }
   }
 `;

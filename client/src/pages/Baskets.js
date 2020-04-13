@@ -9,6 +9,7 @@ import GiftCard from '../components/GiftCard';
 const GET_BASKET = gql`
   query basket($id: Int!) {
     basket(id: $id) {
+      id,
       name,
       birthdate,
       gifts {
