@@ -69,18 +69,33 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
         </Typography>
       </CardContent>
       <CardActions>
-        { gift.link ? <Link href={gift.link} target="_blank">See Product</Link> : null }
+        { gift.link ? <Link 
+          size="small"
+          color="secondary"
+          href={gift.link} target="_blank">See Product</Link> : null }
 
         { !isNewBasketFlow && !gift.isPublic ? 
           <div>
-            <Button onClick={() => toggleModal(true)}>Edit Gift</Button>
+            <Button
+              size="small"
+              color="secondary" 
+              onClick={() => toggleModal(true)}>Edit Gift</Button>
             {
               isExistingBasketFlow ? 
-              <Button onClick={() => handleRemoveGift()}>Remove Gift</Button>
-              : <Button onClick={() => handleDeleteGift()}>Delete Gift</Button>
+              <Button 
+              size="small"
+              color="secondary"
+              onClick={() => handleRemoveGift()}>Remove Gift</Button>
+              : <Button 
+              size="small"
+              color="secondary"
+              onClick={() => handleDeleteGift()}>Delete Gift</Button>
             }
           </div>
-        : <Button onClick={() => handleAddGift()}>Add</Button>
+        : <Button 
+        size="small"
+        color="secondary"
+        onClick={() => handleAddGift()}>Add</Button>
       }
       </CardActions>
         <EditGiftModal gift={gift} isShowing={isShowing} toggleModal={toggleModal} />
