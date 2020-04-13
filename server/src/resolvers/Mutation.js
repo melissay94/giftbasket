@@ -148,7 +148,7 @@ async function deleteBasket(root, { id }, { currentUser, models }) {
     }
 }
 
-async function createGift(root, { title, description, link, image, isPublic }, { currentUser, models }) {
+async function createGift(root, { basketId, title, description, link, image, isPublic }, { currentUser, models }) {
   
   const gift = await models.gift.create({
     title,
@@ -159,12 +159,25 @@ async function createGift(root, { title, description, link, image, isPublic }, {
   });
 
   const user = await models.user.findOne({
-    id: currentUser.userId
-  })
+    where: {
+      id: currentUser.userId
+    }
+  });
 
   if (gift) {
     if (user) {
       user.addGift(gift);
+    }
+    if (basketId) {
+      const basket = await models.basket.findOne({
+        where: {
+          id: basketId
+        }
+      });
+      if (basket) {
+        console.log(basket);
+        basket.addGift(gift);
+      }
     }
     return gift;
   } else {
@@ -200,11 +213,6 @@ async function editGift(root, { id, title, description, link, image, isPublic}, 
 }
 
 async function deleteGift(root, { id }, { currentUser, models }) {
-  /*
-    1. Find gift by id and get all users associated with it
-    2. If more than currentUser are associated with it, remove user id from gift user array
-    3. If just you are associated with it, delete the gift and remove it's entry from the join table
-  */
  const gift = await models.gift.findOne({
    where: {
      id
@@ -278,8 +286,8 @@ async function addGiftToUser(root, { id }, { currentUser, models }) {
   });
 
   if (user) {
-    const giftIds = user.gifts.map(userGifts => {
-      return userGifts.id;
+    const giftIds = user.gifts.map(gift => {
+      return gift.id;
     });
 
     if (gift) {
@@ -287,7 +295,7 @@ async function addGiftToUser(root, { id }, { currentUser, models }) {
         throw new Error("Gift already added to user");
       } else {
         await gift.addUsers(user);
-        return true;
+        return user;
       }
     } else {
       throw new Error("Gift could not be found");
@@ -298,13 +306,34 @@ async function addGiftToUser(root, { id }, { currentUser, models }) {
 }
 
 async function addGiftToBasket(root, { basketId, giftId }, { currentUser, models }) {
-  /**
-   * Find gift by id
-   * Find basket by id
-   * Ensure that neither has an entry of the other
-   * If not, add gift id to basket, and basket id to gift
-   * Return boolean for if added or not
-   */
+
+  const gift = await models.gift.findOne({
+    where: { id: giftId }
+  });
+
+  const basket = await models.basket.findOne({
+    where: { id: basketId },
+    include: models.gift
+  });
+
+  if (basket) {
+    const giftIds = basket.gifts.map(gift => {
+      return gift.id;
+    });
+
+    if (gift) {
+      if (giftIds.includes(gift.id)) {
+        throw new Error("Gift already in basket");
+      } else {
+        await gift.addBaskets(basket);
+        return basket;
+      } 
+    } else {
+      throw new Error("Gift could not be found");
+    }
+  } else {
+    throw new Error("Basket could not be found");
+  }
 }
 
 module.exports = {

@@ -18,11 +18,21 @@ const REMOVE_GIFT = gql`
     removeGiftFromBasket(giftId: $giftId, basketId: $basketId)
   }`;
 
+const ADD_GIFT = gql`
+mutation addGiftToUser($id: Int!) {
+  addGiftToUser(id: $id) {
+    id,
+    name,
+  }
+}
+`;
+
 function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
   const { isShowing, toggleModal } = useModal();
   const { id } = useParams();
   const [deleteGift, { data, loading, error }] = useMutation(DELETE_GIFT, { refetchQueries: ['basket'] } );
   const [removeGift, { }] = useMutation(REMOVE_GIFT, { refetchQueries: ['basket'] });
+  const [addGift, { }] = useMutation(ADD_GIFT);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
@@ -33,6 +43,10 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
 
   const handleRemoveGift = () => {
     removeGift({ variables: { giftId: gift.id, basketId: id } });
+  }
+
+  const handleAddGift = () => {
+    addGift({ variables: { id: gift.id } });
   }
 
   return (
@@ -49,7 +63,7 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
       <CardActions>
         { gift.link ? <Link href={gift.link} target="_blank">See Product</Link> : null }
 
-        { !isNewBasketFlow ? 
+        { !isNewBasketFlow && !gift.isPublic ? 
           <div>
             <Button onClick={() => toggleModal(true)}>Edit Gift</Button>
             {
@@ -58,7 +72,7 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
               : <Button onClick={() => handleDeleteGift()}>Delete Gift</Button>
             }
           </div>
-        : null
+        : <Button onClick={() => handleAddGift()}>Add</Button>
       }
       </CardActions>
         <EditGiftModal gift={gift} isShowing={isShowing} toggleModal={toggleModal} />
