@@ -246,6 +246,18 @@ async function deleteGift(root, { id }, { currentUser, models }) {
 }
 
 async function removeGiftFromBasket(root, { basketId, giftId }, { currentUser, models }) {
+
+  const basket = await models.basket.findOne({
+    where: { id: basketId }
+  });
+
+  const gift = await models.gift.findOne({
+    where: { id: giftId }
+  });
+
+  if (basket && gift) {
+    return await basket.removeGifts(gift);
+  }
   
 }
 
@@ -256,6 +268,33 @@ async function addGiftToUser(root, { id }, { currentUser, models }) {
     3. If not, then add this gift id to user, and add user to gift id
     4. Return boolean for if added or not
    */
+  const gift = await models.gift.findOne({
+    where: { id }
+  });
+
+  const user = await models.user.findOne({
+    where: { id: currentUser.userId },
+    include: models.gift
+  });
+
+  if (user) {
+    const giftIds = user.gifts.map(userGifts => {
+      return userGifts.id;
+    });
+
+    if (gift) {
+      if (giftIds.includes(gift.id)) {
+        throw new Error("Gift already added to user");
+      } else {
+        await gift.addUsers(user);
+        return true;
+      }
+    } else {
+      throw new Error("Gift could not be found");
+    }
+  } else {
+    throw new Error("User could not be found");
+  }
 }
 
 async function addGiftToBasket(root, { basketId, giftId }, { currentUser, models }) {
@@ -277,6 +316,7 @@ module.exports = {
   createGift,
   editGift,
   deleteGift,
+  removeGiftFromBasket,
   addGiftToUser,
   addGiftToBasket,
 };

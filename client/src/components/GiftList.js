@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import GiftCard from './GiftCard';
 
-function GiftList({ gifts, isNewBasketFlow }) {
+function GiftList({ gifts, isNewBasketFlow}) {
   return (
     <Grid container>
       {

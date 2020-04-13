@@ -40,7 +40,7 @@ function Baskets({ isLoggedIn }) {
     <div>
       <BasketHeader basket={basket || null} />
       {basket.gifts.map((item) => (
-        <GiftCard key={item.id} gift={item} />
+        <GiftCard key={item.id} gift={item} isExistingBasketFlow={true}/>
       ))}
     </div>
   );
