@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
 import {
-  TextField, Typography, Button, Grid
+  TextField, Button, Grid
 } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import { makeStyles } from '@material-ui/core/styles';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Redirect } from 'react-router-dom';
@@ -17,10 +18,18 @@ mutation editBasket($id: Int!, $name: String, $birthdate: String, $address: Stri
   }
 }`;
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: '1em',
+    width: '65%',
+  },
+}));
+
 function EditBasketForm({ basket }) {
   const [name, setName] = useState(basket.name);
   const [birthdate, setBirthdate] = useState(basket.birthdate);
   const [address, setAddress] = useState(basket.address);
+  const classes = useStyles();
 
   const [editBasket, { data, loading, error }] = useMutation(UPDATE_BASKET);
 
@@ -72,6 +81,7 @@ function EditBasketForm({ basket }) {
           onChange={(e) => setAddress(e.target.value) }
         />
         <Button 
+          className={classes.button}
           variant="contained"
           type="submit"
           color="secondary">

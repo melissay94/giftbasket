@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import {
   Typography, Link, Card, CardContent, CardActions, Button
 } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
 import EditGiftModal from "./EditGiftModal";
 import useModal from '../hooks/useModal';
 
@@ -27,12 +28,19 @@ mutation addGiftToUser($id: Int!) {
 }
 `;
 
+const useStyles = makeStyles(theme => ({
+  card: {
+    margin: '1em'
+  }
+}));
+
 function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
   const { isShowing, toggleModal } = useModal();
   const { id } = useParams();
   const [deleteGift, { data, loading, error }] = useMutation(DELETE_GIFT, { refetchQueries: ['basket'] } );
   const [removeGift, { }] = useMutation(REMOVE_GIFT, { refetchQueries: ['basket'] });
   const [addGift, { }] = useMutation(ADD_GIFT);
+  const classes = useStyles();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
@@ -50,7 +58,7 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
   }
 
   return (
-    <Card>
+    <Card elevation={3} className={classes.card}>
       <CardContent>
         <Typography variant="h4">{gift.title ? gift.title : 'No Title' }</Typography>
         <Typography variant="body2">{gift.description ? gift.description : '' }</Typography>

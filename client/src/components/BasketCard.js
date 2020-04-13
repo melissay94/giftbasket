@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: '100%',
-    minHeight: 360,
+    minHeight: 180,
     margin: theme.spacing(2),
   },
 }));
@@ -27,7 +27,7 @@ function BasketCard({ basket }) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={3}>
       <CardContent>
         <Typography gutterBottom variant="h5">
           {basket.name ? basket.name : 'Empty Basket'}

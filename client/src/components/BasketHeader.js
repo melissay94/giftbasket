@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Typography, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import AddGiftModal from './AddGiftModal';
 import useModal from '../hooks/useModal';
 
@@ -27,6 +28,22 @@ mutation addGiftToBasket($basketId: Int!, $giftId: Int!) {
   }
 }`;
 
+const useStyles = makeStyles((theme) => ({
+  title: {
+    margin: theme.spacing(5),
+  },
+  info: {
+    marginLeft: theme.spacing(5),
+    marginBottom: theme.spacing(2)
+  },
+  buttons: {
+    width: '50%',
+    marginLeft: theme.spacing(4),
+    marginRight: theme.spacing(12),
+    display: "flex",
+    justifyContent: "space-between"
+  }
+}));
 
 function BasketHeader({ basket }) {
   const [deleteBasket, { data: deleteData, loading: deleteLoading, error: deleteError }] = useMutation(DELETE_BASKET);
@@ -34,6 +51,7 @@ function BasketHeader({ basket }) {
   const [addGift, { loading: isAddedLoading, error: isAddedError}] = useMutation(ADD_GIFT, { refetchQueries: ['basket'] });
 
   const { isShowing, toggleModal } = useModal();
+  const classes = useStyles();
 
   const existingGiftIds = basket.gifts.map(gift => {
     return gift.id;
@@ -79,22 +97,35 @@ function BasketHeader({ basket }) {
   return (
     <div>
       <div>
-        <Typography variant="h2">
+        <Typography variant="h2" className={classes.title}>
           {basket.name ? basket.name : 'No name'}
         </Typography>
+        <div className={classes.info}>
         <Typography variant="body2">
           {basket.birthdate ? parseDate(basket.birthdate) : 'No birthdate'}
         </Typography>
+        <Typography variant="body2">
+          {basket.address ? basket.address : 'No address'}
+        </Typography></div>
       </div>
-      <Button onClick={() => toggleModal(true)}>Add Gift</Button>
+      <div className={classes.buttons}>
+      <Button 
+        variant="contained"
+        color="secondary"
+        onClick={() => toggleModal(true)}>Add Gift</Button>
       <Button
+        variant="contained"
         color="secondary"
         href={`/basket/${basket.id ? basket.id : ''}/edit`}
       >
         Edit
 
       </Button>
-      <Button color="secondary" onClick={e => handleDeleteBasket(e)}>Delete</Button>
+      <Button
+        variant="contained"
+        color="secondary" 
+        onClick={e => handleDeleteBasket(e)}>Delete</Button>
+      </div>
       <AddGiftModal
         toggleModal={toggleModal}
         isShowing={isShowing}
