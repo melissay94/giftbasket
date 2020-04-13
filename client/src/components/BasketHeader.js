@@ -10,7 +10,6 @@ mutation deleteBasket($id: Int!) {
   deleteBasket(id: $id)
 }`;
 
-
 function BasketHeader({ basket }) {
   const [deleteBasket, { data, loading, error }] = useMutation(DELETE_BASKET);
 

@@ -59,6 +59,7 @@ type Mutation {
   addGiftToUser(id: Int!): User
   addGiftToBasket(basketId: Int!, giftId: Int!): Basket
   deleteGift(id: Int!): Boolean
+  removeGiftFromBasket(basketId: Int!, giftId: Int!): Boolean
   signup(email: String!, password: String!, name: String): AuthPayload
   login(email: String!, password: String!): AuthPayload
 }

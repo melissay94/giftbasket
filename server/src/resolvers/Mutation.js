@@ -102,16 +102,30 @@ async function editBasket(root, { id, name, birthdate, address }, { currentUser,
     3. Update any fields that have a value and keep fields that are the same
     4. Return the updated object
   */
+ const basket = await models.basket.findOne({
+   where: {
+     id
+   }
+ });
+
+ if (basket && basket.userId === currentUser.userId) {
+   const updatedBasket = await basket.update({
+     name: name || basket.name,
+     birthdate: birthdate || basket.birthdate,
+     address: address || basket.address
+   });
+
+   if (updatedBasket) {
+     return updatedBasket;
+   } else {
+     throw new Error(`Unable to update basket ${basket.name}`);
+   }
+ } else {
+   throw new Error("Unable to find basket");
+ }
 }
 
 async function deleteBasket(root, { id }, { currentUser, models }) {
-  /*
-    1. Attempt to find the basket using the id passed in
-    2. Ensure the returned basket's user id matches the currentUser's user id
-    3. Attempt to delete the basket
-    4. Remove the basket id from all gifts that have it
-    5. Return a boolean for if it was deleted or not
-  */
     const basket = await models.basket.findOne({
       where: {
         id
@@ -127,11 +141,8 @@ async function deleteBasket(root, { id }, { currentUser, models }) {
     const gifts = await basket.getGifts();
 
     if (basket.userId === user.id) {
-      console.log(gifts);
 
-      const result = await basket.removeGifts(gifts);
-
-      console.log(result);
+      await basket.removeGifts(gifts);
 
       const numDeleted = await models.basket.destroy({
         where: {
@@ -174,6 +185,47 @@ async function deleteGift(root, { id }, { currentUser, models }) {
     2. If more than currentUser are associated with it, remove user id from gift user array
     3. If just you are associated with it, delete the gift and remove it's entry from the join table
   */
+ const gift = await models.gift.findOne({
+   where: {
+     id
+   }
+ });
+
+ const users = await gift.getUsers();
+ const baskets = await gift.getBaskets();
+
+ if (users.length > 1) {
+   const currentUserBaskets = baskets.filter(basket => {
+     return basket.userId === currentUser.userId;
+   });
+
+   await gift.removeBaskets(currentUserBaskets);
+
+   const user = await models.user.findOne({
+     where: {
+       id: currentUser.userId
+     }
+   });
+
+   await user.removeGifts(gift);
+
+   return true;
+
+ } else {
+  await gift.removeBaskets(baskets);
+
+  const numDeleted = await models.gift.destroy({
+    where: {
+      id 
+    }
+  });
+
+  return numDeleted > 0;
+ }
+}
+
+async function removeGiftFromBasket(root, { basketId, giftId }, { currentUser, models }) {
+  
 }
 
 async function addGiftToUser(root, { id }, { currentUser, models }) {
