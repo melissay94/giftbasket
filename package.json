@@ -2,9 +2,13 @@
   "name": "giftbasket-server",
   "version": "1.0.0",
   "description": "Backend for final project, utilizing graphql",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "engines": {
+    "node": "13.6.0"
   },
   "repository": {
     "type": "git",
