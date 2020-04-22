@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/giftbasket/static/css/main.ea9c5ad9.chunk.css",
-    "main.js": "/giftbasket/static/js/main.1bdbffed.chunk.js",
-    "main.js.map": "/giftbasket/static/js/main.1bdbffed.chunk.js.map",
-    "runtime-main.js": "/giftbasket/static/js/runtime-main.271d1315.js",
-    "runtime-main.js.map": "/giftbasket/static/js/runtime-main.271d1315.js.map",
-    "static/js/2.9e192e01.chunk.js": "/giftbasket/static/js/2.9e192e01.chunk.js",
-    "static/js/2.9e192e01.chunk.js.map": "/giftbasket/static/js/2.9e192e01.chunk.js.map",
+    "main.js": "/giftbasket/static/js/main.6919bf43.chunk.js",
+    "main.js.map": "/giftbasket/static/js/main.6919bf43.chunk.js.map",
+    "runtime-main.js": "/giftbasket/static/js/runtime-main.66ca73e1.js",
+    "runtime-main.js.map": "/giftbasket/static/js/runtime-main.66ca73e1.js.map",
+    "static/js/2.87061a4b.chunk.js": "/giftbasket/static/js/2.87061a4b.chunk.js",
+    "static/js/2.87061a4b.chunk.js.map": "/giftbasket/static/js/2.87061a4b.chunk.js.map",
     "index.html": "/giftbasket/index.html",
-    "precache-manifest.bf0c11501d10a7deb84fd4110ccec979.js": "/giftbasket/precache-manifest.bf0c11501d10a7deb84fd4110ccec979.js",
+    "precache-manifest.b5d10cf115addc4cc68c449491e40143.js": "/giftbasket/precache-manifest.b5d10cf115addc4cc68c449491e40143.js",
     "service-worker.js": "/giftbasket/service-worker.js",
     "static/css/main.ea9c5ad9.chunk.css.map": "/giftbasket/static/css/main.ea9c5ad9.chunk.css.map",
-    "static/js/2.9e192e01.chunk.js.LICENSE.txt": "/giftbasket/static/js/2.9e192e01.chunk.js.LICENSE.txt",
+    "static/js/2.87061a4b.chunk.js.LICENSE.txt": "/giftbasket/static/js/2.87061a4b.chunk.js.LICENSE.txt",
     "static/media/GiftBasketLogo.png": "/giftbasket/static/media/GiftBasketLogo.acf6e6f5.png",
     "static/media/createIcon.png": "/giftbasket/static/media/createIcon.6b9a78de.png",
     "static/media/findIcon.png": "/giftbasket/static/media/findIcon.32d06af8.png",
@@ -20,9 +20,9 @@
     "static/media/App.css": "/giftbasket/static/media/stockBackgroundPhoto.b358072c.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.271d1315.js",
-    "static/js/2.9e192e01.chunk.js",
+    "static/js/runtime-main.66ca73e1.js",
+    "static/js/2.87061a4b.chunk.js",
     "static/css/main.ea9c5ad9.chunk.css",
-    "static/js/main.1bdbffed.chunk.js"
+    "static/js/main.6919bf43.chunk.js"
   ]
 }

@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "28bbc5a5577117a43dbd5eddf5e5abeb",
+    "revision": "a0a6c7ca6c007ed5ec2ce82abce7a329",
     "url": "/giftbasket/index.html"
   },
   {
-    "revision": "ef2936aaa923f0002cb8",
+    "revision": "a522b2f6bcf8b7fd6f38",
     "url": "/giftbasket/static/css/main.ea9c5ad9.chunk.css"
   },
   {
-    "revision": "757273ddfc73f51c8531",
-    "url": "/giftbasket/static/js/2.9e192e01.chunk.js"
+    "revision": "8fcafa4b0ef54766d9f0",
+    "url": "/giftbasket/static/js/2.87061a4b.chunk.js"
   },
   {
     "revision": "882fee5ad56cfd78b1cc5d94b617aa42",
-    "url": "/giftbasket/static/js/2.9e192e01.chunk.js.LICENSE.txt"
+    "url": "/giftbasket/static/js/2.87061a4b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ef2936aaa923f0002cb8",
-    "url": "/giftbasket/static/js/main.1bdbffed.chunk.js"
+    "revision": "a522b2f6bcf8b7fd6f38",
+    "url": "/giftbasket/static/js/main.6919bf43.chunk.js"
   },
   {
-    "revision": "21c5dc77f0d7a0bd798e",
-    "url": "/giftbasket/static/js/runtime-main.271d1315.js"
+    "revision": "53b0fe7a117bbdd722f4",
+    "url": "/giftbasket/static/js/runtime-main.66ca73e1.js"
   },
   {
     "revision": "acf6e6f5f0d7f11d8d48bf4afdd6770f",
