@@ -5,7 +5,7 @@ import { setContext } from "apollo-link-context";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: "http://localhost:4000/graphql"
+  uri: "https://gift-basket.herokuapp.com/graphql"
 });
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("token");
