@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/giftbasket/static/css/main.ea9c5ad9.chunk.css",
+    "main.js": "/giftbasket/static/js/main.1bdbffed.chunk.js",
+    "main.js.map": "/giftbasket/static/js/main.1bdbffed.chunk.js.map",
+    "runtime-main.js": "/giftbasket/static/js/runtime-main.271d1315.js",
+    "runtime-main.js.map": "/giftbasket/static/js/runtime-main.271d1315.js.map",
+    "static/js/2.9e192e01.chunk.js": "/giftbasket/static/js/2.9e192e01.chunk.js",
+    "static/js/2.9e192e01.chunk.js.map": "/giftbasket/static/js/2.9e192e01.chunk.js.map",
+    "index.html": "/giftbasket/index.html",
+    "precache-manifest.bf0c11501d10a7deb84fd4110ccec979.js": "/giftbasket/precache-manifest.bf0c11501d10a7deb84fd4110ccec979.js",
+    "service-worker.js": "/giftbasket/service-worker.js",
+    "static/css/main.ea9c5ad9.chunk.css.map": "/giftbasket/static/css/main.ea9c5ad9.chunk.css.map",
+    "static/js/2.9e192e01.chunk.js.LICENSE.txt": "/giftbasket/static/js/2.9e192e01.chunk.js.LICENSE.txt",
+    "static/media/GiftBasketLogo.png": "/giftbasket/static/media/GiftBasketLogo.acf6e6f5.png",
+    "static/media/createIcon.png": "/giftbasket/static/media/createIcon.6b9a78de.png",
+    "static/media/findIcon.png": "/giftbasket/static/media/findIcon.32d06af8.png",
+    "static/media/organizeIcon.png": "/giftbasket/static/media/organizeIcon.c4413aed.png",
+    "static/media/shareIcon.png": "/giftbasket/static/media/shareIcon.3b56106a.png",
+    "static/media/App.css": "/giftbasket/static/media/stockBackgroundPhoto.b358072c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.271d1315.js",
+    "static/js/2.9e192e01.chunk.js",
+    "static/css/main.ea9c5ad9.chunk.css",
+    "static/js/main.1bdbffed.chunk.js"
+  ]
+}
