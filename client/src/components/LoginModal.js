@@ -71,6 +71,7 @@ function LoginModal({ isShowing, toggleModal }) {
           <Typography variant="h6" className={classes.title}>Welcome Back!</Typography>
           <form onSubmit={(e) => handleLogin(e)}>
             <TextField
+              required
               variant="outlined"
               label="Email"
               fullWidth
@@ -80,6 +81,7 @@ function LoginModal({ isShowing, toggleModal }) {
               value={email}
             />
             <TextField
+              required
               variant="outlined"
               label="Password"
               type="password"

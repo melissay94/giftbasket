@@ -3,7 +3,13 @@ import { Redirect } from 'react-router-dom';
 import { useApolloClient, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import {
-  Paper, TextField, Typography, Button, Grid,
+  Paper, 
+  TextField, 
+  Typography, 
+  Button, 
+  Grid,
+  Checkbox,
+  FormControlLabel
 } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,6 +22,10 @@ const useStyles = makeStyles(() => ({
   title: {
     textAlign: 'center',
   },
+  message: {
+    color: '#FF6E67',
+    fontWeight: 'bolder'
+  }
 }));
 
 const SIGNUP_USER = gql`
@@ -32,6 +42,7 @@ function SignupFrom() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmedAge, setConfirmedAge] = useState(false);
   const [message, setMessage] = useState(null);
 
   const client = useApolloClient();
@@ -44,6 +55,11 @@ function SignupFrom() {
 
   const handleSignup = (e) => {
     e.preventDefault();
+    if (!confirmedAge) {
+      setMessage('You must be 18 or older to use this site.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       setMessage('Your passwords do not match.');
       return;
@@ -70,6 +86,7 @@ function SignupFrom() {
           onChange={(e) => setName(e.target.value)}
         />
         <TextField
+          required
           variant="outlined"
           label="Email"
           fullWidth
@@ -79,6 +96,8 @@ function SignupFrom() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
+          required
+          helperText="Passwords must be at least 12 characters long and contain at least one uppercase letter, one lowercase, one number, and one symbol."
           variant="outlined"
           label="Password"
           type="password"
@@ -89,6 +108,7 @@ function SignupFrom() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <TextField
+          required
           variant="outlined"
           label="Confirm Password"
           type="password"
@@ -98,6 +118,20 @@ function SignupFrom() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        <FormControlLabel
+          control={
+            <Checkbox checked={confirmedAge} onChange={() => { setConfirmedAge(!confirmedAge) }} name="confirmAgeCheckbox" />
+          }
+          label="By checking this box you submit that you are at least 18 years or older" />
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography
+            variant="subtitle2"
+            className={classes.message}>
+              {message}
+            </Typography>
+          </Grid>
+        </Grid>
         <Grid container>
           <Grid item xs={9} />
           <Grid item xs={3}>
@@ -109,7 +143,6 @@ function SignupFrom() {
               fullWidth
             >
               Sign Up
-
             </Button>
           </Grid>
         </Grid>
