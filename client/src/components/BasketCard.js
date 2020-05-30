@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -38,14 +37,13 @@ function BasketCard({ basket }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link
+        <Button
           size="small"
           color="secondary"
-          component={Button}
-          to={`/basket/${basket.id ? basket.id : ''}`}
+          href={`basket/${basket.id ? basket.id : ''}`}
         >
           See More
-        </Link>
+        </Button>
       </CardActions>
     </Card>
   );

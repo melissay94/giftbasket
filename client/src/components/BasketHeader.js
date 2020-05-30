@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Typography, Button } from '@material-ui/core';
@@ -113,15 +113,14 @@ function BasketHeader({ basket }) {
         variant="contained"
         color="secondary"
         onClick={() => toggleModal(true)}>Add Gift</Button>
-      <Link
+      <Button
         variant="contained"
         color="secondary"
-        component={Button}
-        to={`/basket/${basket.id ? basket.id : ''}/edit`}
+        href={`/basket/${basket.id ? basket.id : ''}/edit`}
       >
         Edit
 
-      </Link>
+      </Button>
       <Button
         variant="contained"
         color="secondary" 

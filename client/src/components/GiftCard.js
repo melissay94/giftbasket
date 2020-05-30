@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import {
@@ -69,11 +69,10 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
         </Typography>
       </CardContent>
       <CardActions>
-        { gift.link ? <RouterLink 
+        { gift.link ? <Link 
           size="small"
           color="secondary"
-          component={Link}
-          to={gift.link} target="_blank">See Product</RouterLink> : null }
+          href={gift.link} target="_blank">See Product</Link> : null }
 
         { !isNewBasketFlow && !gift.isPublic ? 
           <div>

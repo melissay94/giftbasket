@@ -13,7 +13,7 @@ const Basket = require("./resolvers/Basket");
 const Gift = require("./resolvers/Gift");
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 4000;
 
 app.use(cors());
 
@@ -48,7 +48,6 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs, 
   resolvers,
-  introspection: true,
   context: ({ req }) => {
     return {
     currentUser: req.user,
