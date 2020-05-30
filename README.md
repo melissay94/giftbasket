@@ -4,25 +4,48 @@
 ## Elevator Pitch
 Progressive Web Application allowing users to create and save different gift ideas for their friends in order to have a list to reference during special moments in those friends lives.
 
-## User Stories
+## Problem it's trying to solve
 - User always sees or thinks of good gift ideas for their loved ones, but never remember them when it's actually their birthday or a holiday. They use GiftBasket to capture those ideas in the moment to reference later.
+
+## Running Project Locally
+- Clone or download repo
+- Run `npm install` inside of the `client` and then `server` folders
+- Create a `.env` file inside `server` folder
+- Add a `APP_SECRET` key to the file with any value you'd like.
+- Locate the `config` folder inside of `server` and open the `config.json` file
+- This application is currently set up for a postgres dabatabse. You will have to create a database for it locally. Make sure to update the `database` field inside of `config.json` if you give it a different name than `giftbasket`.
+- The `username` and `password` field are because I used Linux Ubuntu for my OS. 
+- If you're having issues and are not on Linux, try removing these fields.
+- Helpful for running the server is to use `nodemon` so that way changes you make are updated instantly
+- Run `nodemon src/index.js` from the `server` folder to start the backend
+- Run `npm start` from the `client` folder to start the frontend
+- Have fun!
+
 
 ## Wireframes
   [Link to Wireframes](https://docs.google.com/document/d/1uI1vH5dAborPAwI2L5a398Vu8ILIg24JS4x4jlzkrrY/edit?usp=sharing)
-- Landing Page - Create an account / Sign In
-- Home Page - View all the different "baskets" that you've created (A basket is made per person you add to your profile)
-- Create a Basket page - Takes in a name, birthdate, maybe an address and any primary gift ideas
-- View Basket page - See a specific basket and everything in it. Can remove ideas from here, and add gift ideas.
-- Edit Basket - Edit details about the person.
-- User Profile page 
-- Edit User Profile page
 
-## Proposed Architecture
-- Backend in Express, Sequelize, Postgres
-- I want to use GraphQL and Apollo for my query language
-- Use the Cloudinary API to save photos
-- Frontend in React, TypeScript, with making it a PWA using create-react-app as the base
-- Material UI since I'm making it a PWA
+## Sitemap
+![Giftbasket Sitemap](./readme_imgs/GiftbasketSitemap.png)
+
+## Tech used
+Backend:
+- Postgres
+- Sequelize
+- Express
+- Apollo-Server
+- GraphQL
+- Bcrypt
+- jsonwebtoken
+Frontend:
+- React
+- MaterialUI
+- Apollo-Client
+- JavaScript
+- jwt-decode
+
+## ER Diagram
+![Giftbasket ERD](./readme_imgs/GiftbasketERD.png)
 
 ## MVP
 - Queries and mutations for GraphQL set up with the backend - *Completed* 
