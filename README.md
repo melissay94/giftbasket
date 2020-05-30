@@ -29,15 +29,15 @@ Progressive Web Application allowing users to create and save different gift ide
 ![Giftbasket Sitemap](./readme_imgs/GiftbasketSitemap.png)
 
 ## Tech used
-Backend:
+### Backend:
 - Postgres
 - Sequelize
 - Express
 - Apollo-Server
 - GraphQL
 - Bcrypt
-- jsonwebtoken
-Frontend:
+- jsonwebtoken  
+### Frontend:
 - React
 - MaterialUI
 - Apollo-Client
