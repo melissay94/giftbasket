@@ -2,9 +2,13 @@
   "name": "giftbasket-server",
   "version": "1.0.0",
   "description": "Backend for final project, utilizing graphql",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "heroku-postbuild": "npm install && npm run build"
+  },
+  "engines": {
+    "node": "12.17.0"
   },
   "repository": {
     "type": "git",
@@ -30,10 +34,12 @@
     "graphql": "^15.0.0",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "^8.5.1",
+    "n": "^6.5.1",
     "pg": "^8.0.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.6",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "stable": "^0.1.8"
   },
   "devDependencies": {
     "eslint": "^6.8.0"
