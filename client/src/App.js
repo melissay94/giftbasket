@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -36,7 +36,7 @@ function App() {
   const navigation = data.isLoggedIn ? <PostAuthNav /> : <PreAuthNav />;
 
   return (
-    <Router>
+    <Router basename="/">
       <div className="App">
         <ThemeProvider theme={theme}>
           {navigation}

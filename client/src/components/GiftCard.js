@@ -1,9 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link as RouterLink } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import {
-  Typography, Link, Card, CardContent, CardActions, Button
+  Typography, 
+  Link, 
+  Card, 
+  CardContent, 
+  CardActions, 
+  Button
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import EditGiftModal from "./EditGiftModal";
@@ -69,10 +74,13 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
         </Typography>
       </CardContent>
       <CardActions>
-        { gift.link ? <Link 
+        { gift.link ? <RouterLink 
           size="small"
           color="secondary"
-          href={gift.link} target="_blank">See Product</Link> : null }
+          component={Link}
+          to={gift.link} target="_blank">
+            See Product
+          </RouterLink> : null }
 
         { !isNewBasketFlow && !gift.isPublic ? 
           <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApolloClient } from '@apollo/react-hooks';
@@ -35,24 +35,24 @@ function PostAuthNav() {
         <div className={classes.title}>
           <Logo link="/home" />
         </div>
-        <Button
+        <Link
           href="/home"
           className={classes.button}
         >
           My Baskets
-        </Button>
-        <Button
+        </Link>
+        <Link
           href="/gifts"
           className={classes.button}
         >
           My Gifts
-        </Button>
-        <Button
+        </Link>
+        <Link
           href="/feed"
           className={classes.button}
         >
           Discover
-        </Button>
+        </Link>
         <Button className={classes.button} onClick={() => logout()}>Logout</Button>
       </Toolbar>
     </AppBar>
