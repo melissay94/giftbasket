@@ -43,8 +43,8 @@ function GiftCard({ gift, isNewBasketFlow, isExistingBasketFlow }) {
   const { isShowing, toggleModal } = useModal();
   const { id } = useParams();
   const [deleteGift, { data, loading, error }] = useMutation(DELETE_GIFT, { refetchQueries: ['basket'] } );
-  const [removeGift, { }] = useMutation(REMOVE_GIFT, { refetchQueries: ['basket'] });
-  const [addGift, { }] = useMutation(ADD_GIFT);
+  const [removeGift, {  }] = useMutation(REMOVE_GIFT, { refetchQueries: ['basket'] });
+  const [addGift, {  }] = useMutation(ADD_GIFT);
   const classes = useStyles();
 
   if (loading) return <div>Loading...</div>;

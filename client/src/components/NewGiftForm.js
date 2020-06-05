@@ -19,7 +19,7 @@ function NewGiftForm({ addGift, toggleModal, }) {
       title,
       description,
       link,
-      isPublic: isPublic == 'true',
+      isPublic: isPublic === 'true',
     };
 
     addGift(newGift);
