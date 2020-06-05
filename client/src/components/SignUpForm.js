@@ -46,11 +46,19 @@ function SignupFrom() {
   const [message, setMessage] = useState(null);
 
   const client = useApolloClient();
-  const [signup, { data, loading, error }] = useMutation(SIGNUP_USER, {
+  const [signup, { data, loading }] = useMutation(SIGNUP_USER, {
     onCompleted({ signup }) {
       localStorage.setItem('token', signup.token);
       client.writeData({ data: { isLoggedIn: true } });
     },
+    onError({ graphQLErrors, networkError }) {
+      if (graphQLErrors) {
+        setMessage(graphQLErrors[0].message);
+      }
+      if (networkError) {
+        setMessage(networkError.message || "Network Error");
+      }
+    }
   });
 
   const handleSignup = (e) => {
@@ -69,7 +77,6 @@ function SignupFrom() {
   };
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error!</div>;
   if (data) return <Redirect to="/home" />;
 
   return (
