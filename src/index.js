@@ -48,6 +48,7 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs, 
   resolvers,
+  introspection: true,
   context: ({ req }) => {
     return {
     currentUser: req.user,
