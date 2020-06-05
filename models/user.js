@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
         len: {
           args: [12, 99],
           msg: "Invalid password length. Must be between 12 and 99 characters"
+        },
+        is: {
+          args: /(?=.*?[0-9])(?=.*?[A-Z])(?=.*[a-z]).+/,
+          msg: "Missing neccessary password characters. Please include at least one lowercase letter, one uppercase letter, one number, and one special character."
         }
       },
-      is: {
-        args: /(?=.*?[0-9])(?=.*?[A-Z])(?=.*[a-z]).+/,
-        msg: "Missing neccessary password characters. Please include at least one lowercase letter, one uppercase letter, one number, and one special character."
-      }
     },
     name: {
       type: DataTypes.STRING,
