@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.7d8024fb.chunk.css",
-    "main.js": "/static/js/main.0b290ea9.chunk.js",
-    "main.js.map": "/static/js/main.0b290ea9.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.8c40394c.js",
-    "runtime-main.js.map": "/static/js/runtime-main.8c40394c.js.map",
-    "static/js/2.e87384b8.chunk.js": "/static/js/2.e87384b8.chunk.js",
-    "static/js/2.e87384b8.chunk.js.map": "/static/js/2.e87384b8.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.057a6023f5f6d4f2ea9ff8842d4cd1c3.js": "/precache-manifest.057a6023f5f6d4f2ea9ff8842d4cd1c3.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.7d8024fb.chunk.css.map": "/static/css/main.7d8024fb.chunk.css.map",
-    "static/js/2.e87384b8.chunk.js.LICENSE.txt": "/static/js/2.e87384b8.chunk.js.LICENSE.txt",
-    "static/media/GiftBasketLogo.png": "/static/media/GiftBasketLogo.acf6e6f5.png",
-    "static/media/createIcon.png": "/static/media/createIcon.6b9a78de.png",
-    "static/media/findIcon.png": "/static/media/findIcon.32d06af8.png",
-    "static/media/organizeIcon.png": "/static/media/organizeIcon.c4413aed.png",
-    "static/media/shareIcon.png": "/static/media/shareIcon.3b56106a.png",
-    "static/media/App.css": "/static/media/stockBackgroundPhoto.b358072c.jpg"
+    "main.css": "/giftbasket/static/css/main.ea9c5ad9.chunk.css",
+    "main.js": "/giftbasket/static/js/main.d7195c11.chunk.js",
+    "main.js.map": "/giftbasket/static/js/main.d7195c11.chunk.js.map",
+    "runtime-main.js": "/giftbasket/static/js/runtime-main.f43f48e2.js",
+    "runtime-main.js.map": "/giftbasket/static/js/runtime-main.f43f48e2.js.map",
+    "static/js/2.e87384b8.chunk.js": "/giftbasket/static/js/2.e87384b8.chunk.js",
+    "static/js/2.e87384b8.chunk.js.map": "/giftbasket/static/js/2.e87384b8.chunk.js.map",
+    "index.html": "/giftbasket/index.html",
+    "precache-manifest.78fc37001880cacb38aaa9a50eacb063.js": "/giftbasket/precache-manifest.78fc37001880cacb38aaa9a50eacb063.js",
+    "service-worker.js": "/giftbasket/service-worker.js",
+    "static/css/main.ea9c5ad9.chunk.css.map": "/giftbasket/static/css/main.ea9c5ad9.chunk.css.map",
+    "static/js/2.e87384b8.chunk.js.LICENSE.txt": "/giftbasket/static/js/2.e87384b8.chunk.js.LICENSE.txt",
+    "static/media/GiftBasketLogo.png": "/giftbasket/static/media/GiftBasketLogo.acf6e6f5.png",
+    "static/media/createIcon.png": "/giftbasket/static/media/createIcon.6b9a78de.png",
+    "static/media/findIcon.png": "/giftbasket/static/media/findIcon.32d06af8.png",
+    "static/media/organizeIcon.png": "/giftbasket/static/media/organizeIcon.c4413aed.png",
+    "static/media/shareIcon.png": "/giftbasket/static/media/shareIcon.3b56106a.png",
+    "static/media/App.css": "/giftbasket/static/media/stockBackgroundPhoto.b358072c.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8c40394c.js",
+    "static/js/runtime-main.f43f48e2.js",
     "static/js/2.e87384b8.chunk.js",
-    "static/css/main.7d8024fb.chunk.css",
-    "static/js/main.0b290ea9.chunk.js"
+    "static/css/main.ea9c5ad9.chunk.css",
+    "static/js/main.d7195c11.chunk.js"
   ]
 }
